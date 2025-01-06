@@ -288,12 +288,12 @@
 
 }
 .product-container{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
-    flex-wrap: wrap;
-    padding-left: 70px;
-    max-width: 1768px;;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три равные колонки */
+    gap: 40px; /* Отступы между карточками */
+    padding: 20px 70px; /* Отступ сверху и слева */
+    max-width: 1768px;
+     /* Центрирование контейнера */
 }
 .product-container-2{
     display: flex;
@@ -312,16 +312,11 @@
     max-width: 1768px;;
 }
 .pro{
-    width: 28%;
-    min-width: 250px;
-    padding: 15px 7px 5px 17px;
+    padding: 15px;
     border: 1px solid #000000;
-    border-radius: 0px;
     cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-    margin: 15px 0;
     transition: 0.2s ease;
-    position: relative;
 }
 
 .pro:hover{

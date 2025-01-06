@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 
+
+
 def women(request) -> HttpResponse:
     context: dict[str, str] = {
         'title': 'Home - Женская одежда',

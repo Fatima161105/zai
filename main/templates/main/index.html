@@ -97,133 +97,26 @@
     </div>
   </nav>
   <div class="product-container">
-    <div class="pro" onclick="window.location.href='{% url "catalog:sproduct" %}';">
-      <img src="{% static "deps/images/p1.png" %}" alt="">
-      <div class="content">
-        <h1>559 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
+    {% for sproduct in main %}
+        <div class="pro">
+            <img src="{% static sproduct.image %}" alt="">
+            <div class="content">
+                <h1>{{sproduct.price}}р.</h1>
+                <span>{{sproduct.name}}</span>
+                <div class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p2.png" %}" alt="">
-      <div class="content">
-        <h1>598 р.</h1>
-        <span>Детские брюки палаццо</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p3.png" %}" alt="">
-      <div class="content">
-        <h1>1233 р.</h1>
-        <span>Хигиуруми для малышей панда</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p4.png" %}" alt="">
-      <div class="content">
-        <h1>960 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p5.png" %}" alt="">
-      <div class="content">
-        <h1>1340 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p6.png" %}" alt="">
-      <div class="content">
-        <h1>657 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p7.png" %}" alt="">
-      <div class="content">
-        <h1>500 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p8.png" %}" alt="">
-      <div class="content">
-        <h1>647 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    <div class="pro">
-      <img src="{% static "deps/images/p9.png" %}" alt="">
-      <div class="content">
-        <h1>1068 р.</h1>
-        <span>Носки женские с принтами</span>
-        <div class="stars">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-  </div>
+    {% endfor %}
+</div>
+
+
+  
   <div class="rewind-pages">
     <a href="#">1</a>
     <a href="#">2</a>
