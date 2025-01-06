@@ -1,0 +1,843 @@
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 30px;
+    background-color: hwb(0 100% 0%);
+    border: 1px solid #000000;
+}
+#navbarNavAltMarkup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#navbarNavAltMarkup li {
+    list-style: none;
+    padding: 0 80px;
+    position:relative;
+    
+}
+#navbarNavAltMarkup li a {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: 0.3s ease;
+    font-family: "Montserrat";    
+}
+#navbarNavAltMarkup li a:hover,
+#navbarNavAltMarkup li a.active{
+    color:rgb(178, 207, 207);
+}
+#navbarNavAltMarkup li a.active::after,
+#navbarNavAltMarkup li a:hover::after{
+    content:"";
+    width: 20%;
+    height: 2px;
+    background:rgb(178, 207, 207);
+    position: absolute;
+    bottom: -1px;
+    left: 75px;
+}
+/*#mobile{
+    display: flex;
+    align-items: center;
+}*/
+#navbarNavAltMarkup .pad-1{
+    margin-left: 60px;
+    margin-top: 2px;
+    cursor: pointer; 
+}
+#header .logo{
+    margin-right: 60px;
+}
+#cart-icon{
+    position: relative;
+    cursor: pointer;
+    color: var(--main-color);
+}
+#cart-icon[data-quantity="0"]::after{
+    content: "";
+
+}
+#cart-icon[data-quantity]::after{
+    content:attr(data-quantity);
+    position: absolute;
+    top:0;
+    right: -11px;
+    width: 20px;
+    height: 20px;
+    background:var(--main-color);
+    border-radius: 50%;
+    color: var(--bg-color);
+    font-size: 12px;
+    font-weight: 500;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.size {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.size-1{
+  font-family: "Montserrat", sans-serif;
+  font-size: 56px;
+  font-weight: 300;
+  font-style: normal;
+
+}
+.banner{
+    background-image: url("images/Frame\ 6\ \(1\).png");
+    background-size: cover;
+    height: 760px;
+    width:auto;
+    max-width:100%;
+}
+
+.landing{
+    position: absolute;
+    left: 74px;
+    top: 287px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size:32px;
+}
+.landing1{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 32px;
+}
+.lan-1 {
+    position: absolute;
+    left: 434px;
+    top: 318px;
+
+}
+.lan-2 {
+    position: absolute;
+    left: 471px;
+    top: 357px;
+
+}
+.lan-3 {
+    position: absolute;
+    left: 505px;
+    top: 396px;
+
+}
+
+.big-land1{
+    font-family: "Prosto One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    position: absolute;
+    left: 97px;
+    top: 608px;
+    font-size:48px;
+
+}
+.big-land2{
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    position: absolute;
+    font-size:36px;
+    font-weight: 400;
+    left: 270px;
+    top: 673px;
+
+}
+.w-clothes {
+    background-image: url("images/Frame\ 4\ \(6\).png");
+    background-size: cover;
+    width:750px ;
+    height: 300px;
+    position: absolute;
+    left: 6px;
+    top:877px;
+}
+.ch-clothes{
+    background-image: url("images/Frame\ 5\ \(5\).png");
+    background-size: cover;
+    width:750px ;
+    height: 300px;
+    position: absolute;
+    right: 6px;
+    top:879px;
+}
+.w-brand{
+  position:relative;
+  top: 87px;
+  left: 143px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+}
+.w-land{
+  font-family: "Prosto One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.one-land{
+    font-size:48px;
+    position: absolute;
+    top:94px;
+    left:143px;
+}
+.two-land{
+    font-size:40px;
+    position: absolute;
+    top:133px;
+    left:265px;
+}
+.arrow{
+    position: absolute;
+    top: 133px;
+    left: 687px;
+
+}
+
+.factory{
+    font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+    position: absolute;
+    top: 1191px;
+    left:172px;
+
+}
+.quality{
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: normal;
+    position: absolute;
+    top: 1191px;
+    left: 820px;
+}
+.line-1{
+    position: absolute;
+    top: 1237px;
+    left: 106px;
+}
+.back-cat{
+    background-image: url("images/Frame\ 8\ \(2\).png");
+    background-size: cover;
+    width: 100%;
+    height: 320px;
+    position: absolute;
+    top: 1248px;
+}
+.beginninh-cat{
+    background-image: url("images/Frame\ 8\ \(2\).png");
+    background-size: cover;
+    width: 100%;
+    height: 320px;
+    position: relative;
+    top: -18px;
+}
+.catalog-r{
+  font-family: "Prosto One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size:64px;
+  position: absolute;
+    top: 199px;
+    left: 550px;
+
+}
+.catalog{
+    font-family: "Montserrat", sans-serif;
+  font-size: 45px;
+  font-weight: 300;
+  font-style: normal;
+  position: absolute;
+    top: 160px;
+    left: 480px;
+}
+.ser-1{
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    position:absolute;
+    top:1588px;
+}
+.search-1{
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    position: relative;
+    top:-15px;
+}
+.d-flex{
+    margin-left:900px;
+}
+.filter{
+    margin-left:50px;
+
+}
+.product-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    max-width: 1768px;;
+}
+.product-container-2{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    max-width: 1768px;;
+}
+.product-container-3{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    padding-left: 70px;
+    max-width: 1768px;;
+}
+.pro{
+    width: 28%;
+    min-width: 250px;
+    padding: 15px 7px 5px 17px;
+    border: 1px solid #000000;
+    border-radius: 0px;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+    margin: 15px 0;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+.pro:hover{
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+}
+
+.pro img{
+    width: 90%;
+    border-radius: 20px;
+    padding: 10px 0 0 27px;
+}
+.rewind-pages{
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 45px;
+}
+.rewind-pages a{
+    text-decoration: none;
+    background-color:rgb(236, 247, 247);
+    padding: 15px  20px;
+    border-radius: 4px;
+    color:#000000;
+    font-weight: 600;
+}
+.footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-image: url(images/p11.png);
+    background-size: cover;
+    height: 870px;
+    width:auto;
+    max-width:100%;
+}
+.footer ul{
+    color: #000000;
+    margin-left: 123px;
+    list-style-type: none;
+}
+.col{
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+.col-1 img{
+    width: 184px;
+    height: 78px;
+    margin-top: 430px;
+    margin-left: 182px;
+    
+}
+.col h2{
+    font-family: Montserrat;
+    font-size: 25px;
+    margin-top: 40px;
+    margin-left: 80px;
+}
+.col h4{
+    margin-top: 330px;
+    margin-left: 150px;
+    font-family: Prosto One;
+    font-size: 28px;
+}
+.row img{
+    position: relative;
+    top: 35px;
+    left: 110px;
+    width: 10%;
+    height: 10%;
+    
+}
+.copyright{
+    font-family: Montserrat;
+    font-size: 28px;
+    text-align: center;                                                                                                                                                                                                                                                                         
+    position: relative;
+    position: relative;
+}
+/* Карточки */
+#prodetails{
+    display: flex;
+    margin-top: 20px;
+}
+#prodetails .single-pro-image{
+    width: 40%;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+#prodetails .single-pro-details{
+    width: 50%;
+    padding-top: 120px;
+}
+#prodetails .single-pro-details h4{
+    padding: 40px 0 20px 0;
+}
+#prodetails .single-pro-details h2{
+    font-size: 26px;
+}
+#prodetails .single-pro-details select{
+    display: block;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+#prodetails .single-pro-details input{
+    width: 50px;
+    height: 47px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+#prodetails .single-pro-details input:focus{
+    outline: none;
+}
+#prodetails .single-pro-details button {
+    background: hwb(0 100% 0%);
+    color:#000000;
+    border-radius: 4px;
+}
+#prodetails .single-pro-details button:focus{
+    outline: none;
+}
+#prodetails .single-pro-details span{
+    line-height: 25px;
+}
+/* О НАС */
+#page-header.about-header,
+#page-header.section-p1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-image: url("images/фот.png");
+    background-size: cover;
+    height: 280px;
+    width:auto;
+    max-width:100%;
+}
+
+.about-header h2{
+    padding-left: 220px;
+    padding-top: 100px;
+}
+.par{
+    display: flex;
+    align-items: center;
+    padding-left: 120px;
+    padding-right: 250px;
+}
+.par p{
+    font-size: 20px;
+    font-family: Montserrat;
+}
+.par-1 p{
+    font-size: 20px;
+    font-family: Montserrat;
+    padding-left: 120px;
+    padding-right: 100px;
+}
+.par img{
+    padding: 40px 40px;
+    
+}
+#about-head img{
+    width: 27%;
+    height: auto;
+}
+/* КОРЗИНА  */
+#cart.section-p1{
+    position: relative;
+    width: 100%; /* На всю ширину *//* Минимальная высота фона — 100% от высоты экрана */
+    min-height: 30%; /* Минимальная высота фона — 100% от высоты экрана */
+    background-image: url('images/ФОНН.png'); /* Путь к вашему изображению */
+    background-size: 100% 65%; /* Изображение растягивается по всей ширине и высоте */
+    background-repeat: no-repeat; /* Убираем повторение */
+    background-position:top;
+
+}
+
+#cart .back-homepage{
+    margin-top: 5px;
+    margin-left: 180px;
+    margin-bottom: 23px;
+}
+#cart .cart-s-title{
+    margin: 45px 0 20px 180px ;
+}
+#cart table{
+    width: 80%;
+    margin:auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+    white-space: nowrap;  
+}
+#cart table img{
+    width: 80px;
+}
+#cart table td:nth-child(1){
+    width: 100px;
+    text-align: center;
+}
+#cart table td:nth-child(2){
+    width: 150px;
+    text-align: center;
+}
+#cart table td:nth-child(3){
+    width: 250px;
+    text-align: center;
+}
+#cart table td:nth-child(4){
+    width: 150px;
+    text-align: center;
+}
+#cart table td:nth-child(5){
+    width: 150px;
+    text-align: center;
+}
+#cart table td:nth-child(5) input{
+    width: 70px;
+    padding: 10px 5px 10px 15px;
+}
+#cart table td:nth-child(6){
+    width: 150px;
+    text-align: center;
+    font-size: 19px;
+}
+#cart table thead {
+    border: 1px solid rgb(196, 218, 218);
+    border-left: none;
+    border-right: none;
+    padding-top: 60px;
+}
+#cart table thead td{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 17px;
+    padding: 18px 0; 
+}
+#cart table tbody tr td{
+    padding-top: 15px;
+}
+#cart table tbody td{
+    font-size: 17px;
+    font-family: Montserrat;
+}
+#subtotal {
+    width: 100%; /* Блок на всю ширину страницы */
+    margin: 60px 0 0 0; /* Убираем внешние отступы */
+    padding: 30px;
+    border: 1px solid rgb(196, 218, 218); /* Обводка блока */
+    box-sizing: border-box; /* Учитываем padding при вычислении ширины */
+}
+
+#subtotal table {
+    border-collapse: collapse;
+    width: 47%; /* Таблица занимает 50% ширины родительского блока */
+    margin: 0 auto 20px; /* Центровка таблицы и нижний отступ */
+}
+
+#subtotal table td {
+    width: 47%;
+    border: 1px solid rgb(196, 218, 218);
+    padding: 10px;
+    font-family: Montserrat;
+
+}
+#subtotal table tr:nth-child(1) {
+    font-size: 17px;
+}
+#subtotal table tr:nth-child(2) {
+    font-size: 17px;
+}
+#subtotal table tr:nth-child(3) {
+    font-size: 20px;
+}
+#subtotal button{
+    background-color: #7BBBCB4A;
+    color: #000000; /* Белый цвет текста */
+    font-size: 18px; /* Увеличиваем размер шрифта */
+    padding: 15px 30px; /* Увеличиваем размер кнопки */
+    border: none; /* Убираем рамки */
+    border-radius: 40px; /* Скругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход при наведении */
+    font-family: Prosto One;
+    font-size: 15px;
+    margin: 30px 490px 0; /* Центровка кнопки */
+}
+#subtotal button:hover {
+    background-color: #446e794a; /* Цвет фона при наведении */
+}
+.section-p1 h2{
+    font-size: 32px;
+    font-family: Montserrat;
+}
+.section-p1 span{
+    font-family: Montserrat;
+    font-size: 18px;
+}
+.section-p1 table thead{
+    font-family: Prosto One;
+    font-size: 19px;
+}
+/* ОФОРМЛЕНИЕ ЗАКАЗА/ОПЛАТА  */
+.checkout.selection--lg {
+    position: relative;
+    width: 100%; /* На всю ширину */
+    min-height: 100vh; /* Минимальная высота фона — 100% от высоты экрана */
+    background-image: url('images/ФОН.jpg'); /* Путь к вашему изображению */
+    background-size: 100% 100%; /* Изображение растягивается по всей ширине и высоте */
+    background-position: center; /* Центровка изображения */
+    background-repeat: no-repeat; /* Убираем повторение */
+}
+.checkout__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8rem;
+    margin-top: 20px;
+}
+.checkout__group h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-family: Montserrat;
+}
+.form__input,
+.textarea {
+    width: 100%; /* Элементы занимают всю ширину */
+    padding: 0.8rem 0; /* Внутренние отступы сверху и снизу */
+    border: none; /* Убираем стандартные границы */
+    border-bottom: 0.5px solid rgb(196, 218, 218); /* Нижняя граница черного цвета */
+    outline: none; /* Убираем обводку при фокусе */
+    font-size: 1rem; /* Размер текста */
+    box-sizing: border-box; /* Учитываем padding и border */
+    background-color: transparent; /* Прозрачный фон */
+}
+
+/* Добавление эффекта фокуса для полей формы */
+.form__input:focus,
+.textarea:focus {
+    border-bottom-color: #088ca3; /* Голубая граница при фокусе */
+    transition: border-bottom-color 0.3s ease; /* Анимация изменения цвета */
+}
+/* Стиль для ссылки "В корзину" */
+.back-homepage {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Убираем подчеркивание для всей ссылки */
+    color: black; /* Черный цвет текста и стрелки */
+    font-size: 1rem; /* Размер текста */
+    margin-bottom: 1rem; /* Отступ снизу */
+    transition: color 0.3s ease; /* Анимация изменения цвета */
+}
+
+/* Длинная стрелка */
+.back-homepage i {
+    margin-right: 0.5rem; /* Отступ между стрелкой и текстом */
+    font-size: 1.5rem; /* Увеличенный размер стрелки */
+}
+
+/* Подчеркивание только под текстом "В корзину" */
+.back-homepage span {
+    text-decoration: underline; /* Подчеркивание текста */
+    font-size: 1rem; /* Размер текста */
+}
+
+/* При наведении */
+.back-homepage:hover {
+    color: #088ca3; /* Голубой цвет текста и стрелки при наведении */
+}
+
+.back-homepage:hover span {
+    text-decoration: underline; /* Сохраняем подчеркивание при наведении */
+}
+
+/* Расстояние между строками формы */
+.form {
+    display: flex;
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 1.5rem; /* Расстояние между строками */
+}
+
+.checkout__group {
+    border: 1px solid var(--border-color-alt);
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+.checkout__group h3{
+    font-size: 20px;
+    font-family: Prosto One;
+}
+
+.checkout__group p{
+    font-size: 15px;
+    font-family: Montserrat;
+}
+
+.checkout__group span{
+    font-family: Montserrat;
+    font-size: 18px;
+}
+.checkout__title{
+    margin-top: 2rem; /* Увеличенный отступ сверху */
+    margin-bottom: 0.5rem; /* Отступ снизу */
+    font-size: 1.2rem; /* Размер текста заголовка */
+    font-weight: bold; /* Жирный текст */
+}
+
+/* Для того чтобы блок "Оформление заказа" был левее, можно задать ему размещение в первом столбце */
+.checkout__group:nth-child(1) {
+    grid-column: 1 / 2; /* Размещение первого блока в первом столбце */
+    margin-top: 0; /* Убираем отступ сверху */
+}
+
+/* Для блока "Ваш заказ", чтобы он был ниже "Оформление заказа" */
+.checkout__group:nth-child(2) {
+    grid-column: 2 / 3; /* Размещение второго блока во втором столбце */
+    margin-top: 5rem; /* Отступ сверху */
+}
+.order__table {
+    width: 100%; /* Таблица занимает всю ширину */
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    border: 1px solid rgb(196, 218, 218); /* Голубая рамка вокруг таблицы */
+    margin-top: 2rem; /* Отступ сверху таблицы */
+    margin-bottom: 2rem; /* Отступ снизу таблицы */
+
+}
+
+.order__table tr th,
+.order__table tr td{
+    border: 1px solid rgb(196, 218, 218); /* Голубые рамки между ячейками */
+    padding: .5rem;
+    text-align: center;
+}
+
+.order__table tr th{
+    color: var(--title-color);
+    font-size: 20px;
+    font-family: Prosto One;
+}
+
+.order__img{
+    width: 80px;
+}
+
+.table__quantity,
+.order__subtitle{
+    font-size: var(--small-font-size);
+}
+
+.table__title h3{
+    font-size: 16px;
+    font-family: Montserrat;
+}
+.btn--md {
+    background-color: #7BBBCB4A;
+    color: #000000; /* Белый цвет текста */
+    font-size: 18px; /* Увеличиваем размер шрифта */
+    padding: 15px 30px; /* Увеличиваем размер кнопки */
+    border: none; /* Убираем рамки */
+    border-radius: 40px; /* Скругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход при наведении */
+}
+
+.btn--md:hover {
+    background-color: #446e794a; /* Цвет фона при наведении */
+}
+
+.payment__methods{
+    margin-block: 2.5rem 2.75rem;
+}
+.payment__title{
+    margin-bottom: 1.5rem;
+}
+.payment__option{
+    margin-bottom: 1rem;
+}
+.payment__label {
+    font-size: 18px;
+    font-family: Montserrat;
+}
+.btn--md {
+    font-family: Prosto One;
+    font-size: 15px;
+  }
+/*@media (max-width:799px) {
+    #navbarNavAltMarkup {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 0;
+        right: -300px;
+        height: 100vh;
+        width: 300px;
+        background-color: rgb(255, 255, 255);
+        padding: 80px 0 0 10px;
+        transition: 0.3s;
+    } 
+    #navbarNavAltMarkup.active{
+        right: 0px;
+    } 
+    #navbarNavAltMarkup li{
+        margin-bottom: 25px;
+    }
+    .logo{
+        width: 100%;
+        padding-right: 550px;
+    }
+    #mobile{
+        display: flex;
+        align-items: center;
+    }
+    #mobile i {
+        color:#000000;
+        font-size: 24px;
+        padding-left: 20px;
+    }
+
+
+}*/

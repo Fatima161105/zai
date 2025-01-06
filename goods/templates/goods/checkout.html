@@ -1,0 +1,130 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+
+{% block navigator %}
+<section id="header">
+  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
+  <div> 
+    <ul id="navbarNavAltMarkup">
+        <li>
+            <a href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+     <li>
+        <a href="{% url "main:about" %}">О НАС</a>
+     </li>
+      <li>
+        <a href="buy.html">МОИ ЗАКАЗЫ</a>
+      </li>
+      <li>
+        <a href="contacts.html">КОНТАКТЫ</a>
+      </li>
+        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+    </ul>
+  </div>
+</section>
+{% endblock navigator %}
+
+{% block content %}
+<section class ="checkout selection--lg">
+    <div class="checkout__container container grid">
+        <div class="checkout__group">
+            <h2 class="section__title">Оформление заказа</h2>
+            <a href="{% url "goods:cart" %}" class="back-homepage">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <span>В корзину</span>
+            </a>
+            <p>*Доставка только по России</p>
+            <form action="" class="form grid">
+                <input type="text" placeholder="ФИО" class="form__input">
+                <input type="text" placeholder="Город" class="form__input">
+                <input type="text" placeholder="Улица" class="form__input">
+                <input type="text" placeholder="Дом" class="form__input">
+                <input type="text" placeholder="Квартира" class="form__input">
+                <input type="text" placeholder="Телефон" class="form__input">
+                <input type="email" placeholder="Email" class="form__input">
+                <h3 class="checkout__title">Комментарий курьеру</h3>
+                <textarea name="" placeholder="Комментарий" id="" cols="30"
+                rows="10" class="form__input textarea"></textarea>
+            </form>
+        </div>
+
+        <div class="checkout__group">
+          <h3 class="section__title">Ваш заказ</h3>
+          <table class="order__table">
+            <tr>
+              <th colspan="2">Товары</th>
+              <th>Цена</th>      
+            </tr>
+            <tr>
+              <td>
+                <img src="{% static "deps/images/p1.png" %}" alt="" class="order__img"/>
+              </td>
+              <td>
+                <h3 class="table">Носки женские с принтами</h3>
+                <p class="table__quantity">x 1</p>
+              </td>
+              <td><span class="table__price">559 р.</span></td>
+            </tr>
+
+            <tr>
+              <td>
+                <img src="{% static "deps/images/p2.png" %}" alt="" class="order__img"/>
+              </td>
+              <td>
+                <h3 class="table__title">Детские брюки палаццо</h3>
+                <p class="table__quantity">x 1</p>
+              </td>
+              <td><span class="table__price">598 р.</span></td>
+            </tr>
+
+            <tr>
+              <td>
+                <img src="{% static "deps/images/p3.png" %}" alt="" class="order__img"/>
+              </td>
+              <td>
+                <h3 class="table__title">Хигиуруми для малышей панда</h3>
+                <p class="table__quantity">x 1</p>
+              </td>
+              <td><span class="table__price">1233 р.</span></td>
+            </tr>
+            <tr>
+              <td><span class="order__subtitle">Цена</span></td>
+              <td colspan="2"><span class="table__price">2390 p.</span></td>
+            </tr>
+
+            <tr>
+              <td><span class="order__subtitle">Доставка</span></td>
+              <td colspan="2"><span class="table__price">Бесплатно</span></td>
+            </tr>
+
+            <tr>
+              <td><strong><span class="order__subtitle">Итого</span></strong></td>
+              <td colspan="2"><strong><span class="order__grand-total">2390 р.</span></strong></td>
+            </tr>
+          </table>
+          <div class="payment__methods">
+            <h3 class=".checkout__title payment__title">Способ оплаты</h3>
+
+            <div class="pay__option flex">
+              <input type="radio" name="radio" checked
+              class="payment__input"/>
+              <label for="" class="payment__label">Оплата картой</label>
+            </div>
+
+            <div class="pay__option flex">
+              <input type="radio" name="radio" checked
+              class="payment__input"/>
+              <label for="" class="payment__label">Наличными/Картой при получении</label>
+            </div>
+          </div>
+          <button class="btn btn--md"><strong>Оформить заказ</strong></button>
+        </div>
+    </div>
+  </section>
+{% endblock content %}

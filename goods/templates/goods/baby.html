@@ -1,0 +1,203 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+
+{% block navigator %}
+<section id="header">
+  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
+  <div> 
+    <ul id="navbarNavAltMarkup">
+        <li>
+            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+     <li>
+        <a href="{% url "main:about" %}">О НАС</a>
+     </li>
+      <li>
+        <a href="buy.html">МОИ ЗАКАЗЫ</a>
+      </li>
+      <li>
+        <a href="contacts.html">КОНТАКТЫ</a>
+      </li>
+        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+    </ul>
+  </div>
+</section>
+{% endblock navigator %}
+
+{% block content %}
+<selection>
+    <div class="beginninh-cat">
+      <p class="catalog-r">ДЕТСКАЯ ОДЕЖДА</p>
+      <P class="catalog">catalog</P>
+    </div>
+    <section class="search-1">
+      <nav class="navbar navbar-expand-lg bg"data-bs-theme="white">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="filter nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Фильтры
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Поиск товаров" aria-label="Search">
+              <button class="btn btn-outline-dark" type="submit">Найти</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="product-container-3">
+        <div class="pro">
+          <img src="{% static "deps/images/p23.png" %}" alt="">
+          <div class="content">
+            <h1>1220 р.</h1>
+            <span>Рубашка укороченная для
+                девочки</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p2.png" %}" alt="">
+          <div class="content">
+            <h1>598 р.</h1>
+            <span>Детские брюки палаццо</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p3.png" %}" alt="">
+          <div class="content">
+            <h1>1233 р.</h1>
+            <span>Хигиуруми для малышей
+                панда</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p24.png" %}" alt="">
+          <div class="content">
+            <h1>619 р.</h1>
+            <span>Юбка школьная</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p25.png" %}" alt="">
+          <div class="content">
+            <h1>656 р.</h1>
+            <span>Носки ля детей</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p4.png" %}" alt="">
+          <div class="content">
+            <h1>657 р.</h1>
+            <span>Носки детские с 
+                принтами</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p5.png" %}" alt="">
+          <div class="content">
+            <h1>500 р.</h1>
+            <span>Носки детские с принтами</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p9.png" %}" alt="">
+          <div class="content">
+            <h1>647 р.</h1>
+            <span>Носки детские Nike</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="pro">
+          <img src="{% static "deps/images/p8.png" %}" alt="">
+          <div class="content">
+            <h1>1068 р.</h1>
+            <span>Рубашка школьная для
+                девочки</span>
+            <div class="stars">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rewind-pages">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      {% endblock content %}

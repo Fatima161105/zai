@@ -1,0 +1,232 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+
+{% block navigator %}
+<section id="header">
+  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
+  <div> 
+    <ul id="navbarNavAltMarkup">
+        <li>
+            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+     <li>
+        <a href="{% url "main:about" %}">О НАС</a>
+     </li>
+      <li>
+        <a href="buy.html">МОИ ЗАКАЗЫ</a>
+      </li>
+      <li>
+        <a href="contacts.html">КОНТАКТЫ</a>
+      </li>
+        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+    </ul>
+  </div>
+</section>
+{% endblock navigator %}
+{% block content %}
+<selection>
+  <div class="banner">
+    <div>
+       <p class="landing">Собирайтесь вместе с нами</p>
+       <div class="landing1">
+         <p class="lan-1">в школу,</p>
+         <p class="lan-2">на работу</p>
+         <p class="lan-3">или просто на прогулку!</p>
+       </div>
+     </div>
+    <div class="big-land">
+      <p class="big-land1">КЛАССИКА И НОВАТОРСТВО</p>
+      <p class="big-land2">В ОДНОМ СТИЛЕ!</p>
+    </div>
+ </div>
+</selection>
+<div>
+  <div class="w-clothes">
+    <p class="w-brand">ZA'I</p>
+    <p class="w-land one-land">ЖЕНСКАЯ</p>
+     <p class="w-land two-land">одежда</p>
+     <a href="{% url "catalog:women" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
+  </div>
+  <article class="ch-clothes">
+    <p class="w-brand">ZA'I</p>
+    <p class="w-land one-land">ДЕТСКАЯ</p>
+     <p class="w-land two-land">одежда</p>      
+     <a href="{% url "catalog:baby" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
+  </article>
+</div>
+<div >
+  <p class="factory"><img src="{% static "deps/images/factory.png" %}"width="31px" height="30px">Собственное производство</p>
+  <p class="quality"><img src="{% static "deps/images/quality.png" %}" width="28px" height="25px">Полный контроль качества ткани</p>
+  <img class="line-1"src="images/Line 1.png">
+</div>
+<div class="back-cat">
+  <p class="catalog-r">КАТАЛОГ</p>
+  <P class="catalog">catalog</P>
+</div>
+<section class="ser-1">
+  <nav class="navbar navbar-expand-lg bg"data-bs-theme="white">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="filter nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Фильтры
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Поиск товаров" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit">Найти</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="product-container">
+    <div class="pro" onclick="window.location.href='{% url "catalog:sproduct" %}';">
+      <img src="{% static "deps/images/p1.png" %}" alt="">
+      <div class="content">
+        <h1>559 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p2.png" %}" alt="">
+      <div class="content">
+        <h1>598 р.</h1>
+        <span>Детские брюки палаццо</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p3.png" %}" alt="">
+      <div class="content">
+        <h1>1233 р.</h1>
+        <span>Хигиуруми для малышей панда</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p4.png" %}" alt="">
+      <div class="content">
+        <h1>960 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p5.png" %}" alt="">
+      <div class="content">
+        <h1>1340 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p6.png" %}" alt="">
+      <div class="content">
+        <h1>657 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p7.png" %}" alt="">
+      <div class="content">
+        <h1>500 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p8.png" %}" alt="">
+      <div class="content">
+        <h1>647 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pro">
+      <img src="{% static "deps/images/p9.png" %}" alt="">
+      <div class="content">
+        <h1>1068 р.</h1>
+        <span>Носки женские с принтами</span>
+        <div class="stars">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rewind-pages">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+  </div>
+{% endblock content %}

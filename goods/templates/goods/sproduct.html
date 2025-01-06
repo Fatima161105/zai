@@ -1,0 +1,67 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+
+{% block navigator %}
+<section id="header">
+  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
+  <div> 
+    <ul id="navbarNavAltMarkup">
+        <li>
+            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+     <li>
+        <a href="{% url "main:about" %}">О НАС</a>
+     </li>
+      <li>
+        <a href="buy.html">МОИ ЗАКАЗЫ</a>
+      </li>
+      <li>
+        <a href="contacts.html">КОНТАКТЫ</a>
+      </li>
+        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+    </ul>
+  </div>
+</section>
+{% endblock navigator %}
+
+{% block content %}
+
+<selection id="prodetails" class="section-p1">
+    <div class="single-pro-image">
+        <img src="{% static "deps/images/p1.png" %}" width="100%" id="MaimImg" alt="">
+    </div>
+    <div class="single-pro-details">
+      <h6>Главный / Носки</h6>
+      <h4>Носки женские с принтами</h4>
+      <h2>559 р.</h2>
+      <select>
+        <option>Выберите размер</option>
+        <option>37-42</option>
+      </select>
+      <input type="number" value="1">
+      <button class="normal">Добавить в корзину</button>
+      <h4>Описание</h4>
+      <span> <p><b>Основная информация</b></p>
+      <p>Состав:	Хлопок 80%, Нейлон 15%, Спандекс 5%</p>
+      <p>Цвет:	бежевый; белый; коричневый</p>
+      <p><b>Дополнительная информация</b></p>
+      <p>Декоративные элементы:	шанель</p>
+      <p><b>Описание</b></p>
+      <p>5 ПАР коротких женских носков . Модные , идеально сидят на ногах , подойдут ко всем образам.
+        Яркие и оригинальные.
+        Короткие носки отлично смотрятся на ноге, хорошо тянутся, сохраняя при этом свою форму. Они имеют удобную резинку, которая не сдавливает, 
+        а также усиленный носок и пятку, что позволяет избежать натирания. 
+        Стильные носки разных цветов станут отличным дополнением к любому образу. носки идеально подходят к обуви, кроссовкам, мокасинам, женским джинсам. 
+        Спешите порадовать своих близких и подарить классные носочки. Цветные носки подходят для прогулок, занятий спортом и активного отдыха. 
+        Носки средней длины пригодятся везде. Комплект носков подойдет в качестве подарка коллеге-женщине.. 
+        Набор женских носков уместен на 8 марта. Хороший недорогой вариант классного подарка для дочери - носки с принтом для женщин.</p></span>
+
+    </div>
+</selection>
+    {% endblock  %}

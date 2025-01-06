@@ -1,7 +1,17 @@
 from django.shortcuts import render
+from django.shortcuts import HttpResponse
 
 def index(request) -> HttpResponse:
-    return HttpResponse(request, 'main/index.html')
+    context: dict[str, str] = {
+        'title': 'Home - Catalog',
+        'content':"КАТАЛОГ"
+    }
+    return render(request, 'main/index.html', context)
 
 def about(request) -> HttpResponse:
-    return HttpResponse('About page')    
+    context: dict[str, str] = {
+        'title': 'Home - О нас',
+        'content':"О нас"
+    }
+    return  render(request, 'main/about.html', context) 
+
