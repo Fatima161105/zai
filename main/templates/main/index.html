@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 
 {% load static %}
+{% load main_tags %}
 
 {% block css %}
    <link rel="stylesheet" href="{% static "deps\style.css" %}">
@@ -97,9 +98,13 @@
     </div>
   </nav>
   <div class="product-container">
+    {%tag_products as main%}
     {% for sproduct in main %}
         <div class="pro">
-            <img src="{% static sproduct.image %}" alt="">
+            {% if sproduct.image %}
+              <img src="{{sproduct.image.url}}" alt="{{sproduct.name}}">
+
+            {% endif %}
             <div class="content">
                 <h1>{{sproduct.price}}р.</h1>
                 <span>{{sproduct.name}}</span>
