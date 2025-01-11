@@ -2,14 +2,18 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.shortcuts import HttpResponse
 from main.models import Products
-
+from main.utils import q_search
 
 def index(request) -> HttpResponse:
 
     page= request.GET.get('page' ,1)
     order_by= request.GET.get('order_by' , None)
+    query= request.GET.get('q' , None)
 
     main = Products.objects.all()
+    if query:
+        main=q_search(query)
+
     if order_by and order_by != "default":
         main=main.order_by(order_by)
 

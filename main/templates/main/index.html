@@ -84,7 +84,7 @@
               Фильтры
             </a>
             <ul class="dropdown-menu">
-              <form  action ="{% url "main:index" %}" method="get">
+              <form  action ="{% if request.GET.q %}{% url "main:search" %}{% else %}{% url "main:index" %}{% endif %}" method="get">
               <li>
                 <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="default" checked>
                 <label class="form-check-label" for="flexRadioDefault1">По умолчанию</label>
@@ -102,8 +102,8 @@
           </li>
         </form>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Поиск товаров" aria-label="Search">
+        <form class="d-flex" role="search" action ="{% url "main:search"%}" method="get">
+          <input class="form-control me-2" type="search" name="q" placeholder="Поиск товаров" aria-label="Search">
           <button class="btn btn-outline-dark" type="submit">Найти</button>
         </form>
       </div>
