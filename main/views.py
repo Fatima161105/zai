@@ -7,7 +7,12 @@ from main.models import Products
 def index(request) -> HttpResponse:
 
     page= request.GET.get('page' ,1)
+    order_by= request.GET.get('order_by' , None)
+
     main = Products.objects.all()
+    if order_by and order_by != "default":
+        main=main.order_by(order_by)
+
     paginator =Paginator(main, 6)
     current_page=paginator.page(int(page))
     context: dict[str, Any] = {

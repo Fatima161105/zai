@@ -6,7 +6,12 @@ from goods.models import ProWomen,ProBaby
 
 def women(request) -> HttpResponse:
     page=request.GET.get('page',1)
+    order_by= request.GET.get('order_by' , None)
+
     goods=ProWomen.objects.all()
+    if order_by and order_by != "default":
+        goods=goods.order_by(order_by)
+
     paginator =Paginator(goods,6)
     current_page=paginator.page(int(page))
     context: dict[str, Any] = {
@@ -19,7 +24,12 @@ def women(request) -> HttpResponse:
 
 def baby(request) -> HttpResponse:
     page=request.GET.get('page',1)
+    order_by= request.GET.get('order_by' , None)
+
     goods=ProBaby.objects.all()
+    if order_by and order_by != "default":
+        goods=goods.order_by(order_by)
+
     paginator =Paginator(goods,6)
     current_page=paginator.page(int(page))
 
