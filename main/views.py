@@ -41,3 +41,18 @@ def sproduct2(request, product_slug) -> HttpResponse:
         
     }
     return  render(request, 'main/sproduct1.html', context=context) 
+
+def login(request):
+    context={
+        'title': 'Home-Авторизация'
+    }
+    return render(request,'main/login.html', context)
+
+def registration(request):
+    context={
+        'title': 'Home-Регистрация'
+    }
+    return render(request,'main/registration.html', context)
+    
+def logout(request):
+    ...

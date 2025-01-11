@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
 
 {% load static %}
  
@@ -9,27 +9,65 @@
 {% endblock css %}
 
 {% block navigator %}
-<section id="header">
-  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
-  <div> 
-    <ul id="navbarNavAltMarkup">
-        <li>
-            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
-          </li>
-     <li>
-        <a href="{% url "main:about" %}">О НАС</a>
-     </li>
-      <li>
-        <a href="buy.html">МОИ ЗАКАЗЫ</a>
-      </li>
-      <li>
-        <a href="contacts.html">КОНТАКТЫ</a>
-      </li>
-        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
-        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
-    </ul>
+<!-- Модальное окно для авторизации и регистрации -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <div class="form-container">
+      <!-- Форма авторизации (по умолчанию) -->
+      <div id="login" class="form-section active">
+        <h2>Добро пожаловать в ZA’I!</h2>
+        <form action ="{% url "main:login" %}" method ="post">
+          <label for="email"></label>
+          <input type="text" id="email" placeholder="Введите email или номер телефона" required>
+          <label for="password"></label>
+          <input type="password" id="password" placeholder="Введите пароль" required>
+          <button type="submit" class="btn--md">Войти</button>
+        </form>
+        <p>Нет аккаунта? <a href="javascript:void(0);" onclick="showRegisterForm()">Зарегистрироваться</a></p>
+      </div>
+
+      <!-- Форма регистрации, скрытая по умолчанию -->
+      <div id="register" class="form-section" style="display: none;">
+        <h2>Добро пожаловать в ZA’I!</h2>
+        <form>
+          <label for="regEmail"></label>
+          <input type="email" id="regEmail" placeholder="Введите email" required>
+          <label for="regPhone"></label>
+          <input type="text" id="regPhone" placeholder="Введите номер телефона" required>
+          <label for="regName"></label>
+          <input type="text" id="regName" placeholder="Введите имя" required>
+          <label for="regPassword"></label>
+          <input type="password" id="regPassword" placeholder="Введите пароль" required>
+          <button type="submit" class="btn--md">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="javascript:void(0);" onclick="showLoginForm()">Войти</a></p>
+      </div>
+    </div>
   </div>
-</section>
+</div>
+    <section id="header">
+      <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
+      <div> 
+        <ul id="navbarNavAltMarkup">
+          <li>
+            <a class="active" href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+          <li>
+            <a href="{% url "main:about" %}">О НАС</a>
+          </li>
+          <li>
+            <a href="">МОИ ЗАКАЗЫ</a>
+          </li>
+          <li>
+            <a href="#contacts">КОНТАКТЫ</a>
+          </li>
+            <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+            <a class="pad-1" href="{% url "user:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+            <a class="pad-2" href="javascript:void(0);" id="loginIcon"><img src="{% static "deps\images\photo_2025-01-11_23-00-19.jpg" %}" width="50px" height="50px"></a>
+        </ul>
+      </div>
+    </section>
 {% endblock navigator %}
 {% block content %}
 <selection>
@@ -65,7 +103,7 @@
 <div >
   <p class="factory"><img src="{% static "deps/images/factory.png" %}"width="31px" height="30px">Собственное производство</p>
   <p class="quality"><img src="{% static "deps/images/quality.png" %}" width="28px" height="25px">Полный контроль качества ткани</p>
-  <img class="line-1"src="images/Line 1.png">
+  <img class="line-1"src="{% static "deps/images/Line 1.png" %}">
 </div>
 <div class="back-cat">
   <p class="catalog-r">КАТАЛОГ</p>
@@ -155,3 +193,31 @@
   </div>
 {% endblock content %}
 
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script scr="script.js"></script>
+    <script>
+      // Открытие модального окна при клике на иконку
+      document.getElementById('loginIcon').addEventListener('click', function() {
+        document.getElementById('loginModal').style.display = 'block';
+      });
+    
+      // Закрытие модального окна при клике на крестик
+      document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('loginModal').style.display = 'none';
+      });
+    
+      // Функция для показа формы регистрации
+      function showRegisterForm() {
+        document.getElementById('login').style.display = 'none';  // Скрыть форму входа
+        document.getElementById('register').style.display = 'block';  // Показать форму регистрации
+      }
+    
+      // Функция для показа формы входа
+      function showLoginForm() {
+        document.getElementById('register').style.display = 'none';  // Скрыть форму регистрации
+        document.getElementById('login').style.display = 'block';  // Показать форму входа
+      }
+    </script>
+    </script>    
+   {% endblock javascript %}

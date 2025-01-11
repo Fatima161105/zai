@@ -2,13 +2,20 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.shortcuts import HttpResponse
 from goods.models import ProWomen,ProBaby
+from goods.utils import q_search,q_search1
 
 
 def women(request) -> HttpResponse:
     page=request.GET.get('page',1)
     order_by= request.GET.get('order_by' , None)
 
+    query= request.GET.get('q' , None)
+
     goods=ProWomen.objects.all()
+
+    if query:
+        goods=q_search(query)
+    
     if order_by and order_by != "default":
         goods=goods.order_by(order_by)
 
@@ -25,8 +32,12 @@ def women(request) -> HttpResponse:
 def baby(request) -> HttpResponse:
     page=request.GET.get('page',1)
     order_by= request.GET.get('order_by' , None)
+    query= request.GET.get('q' , None)
 
     goods=ProBaby.objects.all()
+    if query:
+        goods=q_search1(query)
+
     if order_by and order_by != "default":
         goods=goods.order_by(order_by)
 

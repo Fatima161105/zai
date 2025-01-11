@@ -22,32 +22,48 @@
     {% block content %}
     {% endblock content %}
 
+    <footer>
       <div class="footer">
         <div class="col">
           <div class="col-1">
-            <img src="{% static "deps/images/logo.png" %}" alt="">
+            <img src="{% static "deps/images/logo.png" %}" alt="Логотип">
           </div>
-          <h2>Якубова Зайнурра Икромджоновна -
-            Основатель интернет-магазина 
-            и бренда «ZA'I», функционирует 
-            с января 2024 года. 
+          <h2>
+            Якубова Зайнурра Икромджоновна — Основатель интернет-магазина 
+            и бренда «ZA'I», функционирует с января 2024 года.
           </h2>
         </div>
-        <div class="col">
+        <div id="contacts" class="col">
           <h4><strong>Контакты</strong></h4>
           <div class="row">
-            <img src="{% static "deps/images/p12.png" %}" alt="">
-            <img src="{% static "deps/images/p13.png" %}" alt="">
-            <img src="{% static "deps/images/p14.png" %}" alt="">
-            <img src="{% static "deps/images/p15.png" %}" alt="">
+            <div class="contact">
+              <img src="{% static "deps/images/p12.png" %}" alt="Телефон">
+              <p>+7 (912) 647-29-35</p>
+            </div>
+            <div class="contact">
+              <img src="{% static "deps/images/p13.png" %}" alt="Почта">
+              <p>zaynura.yakubova2004@gmail.com</p>
+            </div>
+            <div class="contact">
+              <a href="https://t.me/zai_iak" target="_blank">
+                <img src="{% static "deps/images/p14.png" %}" alt="Instagram">
+              </a>
+              <p>Telegram</p>
+            </div>
+            <div class="contact">
+              <a href="https://wa.me/79126472935" target="_blank">
+                <img src="{% static "deps/images/p15.png" %}" alt="Facebook">
+              </a>
+              <p>WhatsApp</p>
+            </div>
           </div>
         </div>
         <div class="col">
           <h4><strong>Информация</strong></h4>
           <ul>
             <li><a href="#">Информация о доставке</a></li>
-            <li><a href="#">Личный кабинет</a></li>
-            <li><a href="#">О магазине</a></li>
+            <li><a href="{% url "users:profile" %}">Личный кабинет</a></li>
+            <li><a href="{% url "main:about" %}">О магазине</a></li>
             <li><a href="#">Акции</a></li>
           </ul>
         </div>
@@ -55,8 +71,11 @@
       <div class="copyright">
         <p>ZA’I © 2024</p>
       </div>
-      
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </footer>
+      {% block javascript %}
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script scr="script.js"></script>
+      {% endblock javascript %}
+    
   </body>
 </html>

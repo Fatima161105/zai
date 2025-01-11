@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
 
 {% load static %}
 
@@ -7,56 +7,106 @@
 {% endblock css %}
 
 {% block navigator %}
-<section id="header">
-    <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
-    <div> 
-      <ul id="navbarNavAltMarkup">
-          <li>
-              <a  href="{% url "main:index" %}" >КАТАЛОГ</a>
-            </li>
-       <li>
-          <a class="active" href="{% url "main:about" %}">О НАС</a>
-       </li>
-        <li>
-          <a href="buy.html">МОИ ЗАКАЗЫ</a>
-        </li>
-        <li>
-          <a href="contacts.html">КОНТАКТЫ</a>
-        </li>
-          <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
-          <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
-      </ul>
+<!-- Модальное окно для авторизации и регистрации -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <div class="form-container">
+      <!-- Форма авторизации (по умолчанию) -->
+      <div id="login" class="form-section active">
+        <h2>Добро пожаловать в ZA’I!</h2>
+        <form>
+          <label for="email"></label>
+          <input type="text" id="email" placeholder="Введите email или номер телефона" required>
+          <label for="password"></label>
+          <input type="password" id="password" placeholder="Введите пароль" required>
+          <button type="submit" class="btn--md">Войти</button>
+        </form>
+        <p>Нет аккаунта? <a href="javascript:void(0);" onclick="showRegisterForm()">Зарегистрироваться</a></p>
+      </div>
+
+      <!-- Форма регистрации, скрытая по умолчанию -->
+      <div id="register" class="form-section" style="display: none;">
+        <h2>Добро пожаловать в ZA’I!</h2>
+        <form>
+          <label for="regEmail"></label>
+          <input type="email" id="regEmail" placeholder="Введите email" required>
+          <label for="regPhone"></label>
+          <input type="text" id="regPhone" placeholder="Введите номер телефона" required>
+          <label for="regName"></label>
+          <input type="text" id="regName" placeholder="Введите имя" required>
+          <label for="regPassword"></label>
+          <input type="password" id="regPassword" placeholder="Введите пароль" required>
+          <button type="submit" class="btn--md">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="javascript:void(0);" onclick="showLoginForm()">Войти</a></p>
+      </div>
     </div>
-  </section>
+  </div>
+</div>
+    <section id="header">
+      <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
+      <div> 
+        <ul id="navbarNavAltMarkup">
+          <li>
+            <a  href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+          <li>
+            <a class="active" href="{% url "main:about" %}">О НАС</a>
+          </li>
+          <li>
+            <a href="">МОИ ЗАКАЗЫ</a>
+          </li>
+          <li>
+            <a href="#contacts">КОНТАКТЫ</a>
+          </li>
+            <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+            <a class="pad-1" href="{% url "user:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+            <a class="pad-2" href="javascript:void(0);" id="loginIcon"><img src="{% static "deps/images/логин.jpg" %}" width="50px" height="50px"></a>
+        </ul>
+      </div>
+    </section>
   {% endblock navigator  %}
 
 {% block content %}
 <section id="page-header" class="about-header">
-    <h2>{{content}}</h2>
-</section>
-<section id="about-head" class="section-p1">
   <div class="par">
-   <img src="{% static "deps/images/фото.png" %}" alt="">
-       <p>В ZA'I мы верим, что одежда – это не просто ткань, а способ самовыражения, отражение индивидуальности и комфорт, который сопровождает вас каждый день. 
-          Наша история началась с маленькой мечты и большой любви к качественным вещам. Все начиналось на площадке Wildberries, где мы впервые представили наш бренд и
-          начали свой путь с небольшого, но тщательно отобранного ассортимента – уютных и практичных носков. Это был первый шаг к созданию бренда, который бы предлагал не только удобство, но и стиль.
-          <br><br>
-          Опыт работы на Wildberries стал для нас бесценным уроком. Мы научились понимать потребности наших покупателей, анализировать рыночные тренды и постоянно совершенствовать качество нашей продукции. 
-          Мы внимательно следили за отзывами, учитывали пожелания и стремились к постоянному улучшению. Этот опыт помог нам заложить фундамент для дальнейшего развития ZA'I и расширения ассортимента. 
-  </div>
-  <div class="par-1">  
-  <p>Сегодня ZA'I – это уже не просто носки. Мы предлагаем широкий выбор стильной и комфортной одежды для женщин и детей. В нашем каталоге вы найдете:
+      <div class="image-container">
+          <div class="top-images">
+              <img src="{% static "deps/images/вайлд1.jpg" %}" class="top-img" alt="Фото 1">
+              <img src="{% static "deps/images/вайлд2.jpg" %}" class="top-img" alt="Фото 2">
+          </div>
+          <img src="images/фото.png" alt="Основное фото">
+      </div>
+      <div class="text-container">
+      <h3>Одежда, которая отражает вас</h3>
+      <p>В ZA'I мы уверены: одежда – это не просто ткань, а способ выразить себя. Она должна быть удобной и подчеркивать вашу индивидуальность.</p>
+      <h3>Наша история</h3>
+      <p>Все началось с мечты и любви к качеству. Мы сделали первый шаг на платформе Wildberries, предложив уютные и практичные носки. Этот опыт научил нас:
 
-      <p>• Женская одежда: платья, юбки, блузки, брюки – все, что нужно для создания неповторимого образа на каждый день и для особых случаев. Мы стараемся учитывать разные стили и предпочтения, предлагая как классические модели, так и модные новинки.</p>
-          
-      <p>• Детская одежда: удобные и практичные вещи для ваших малышей и подростков, изготовленные из высококачественных и гипоаллергенных материалов. Мы заботимся о комфорте ваших детей и предлагаем яркие и оригинальные модели, которые понравятся и вам, и вашим малышам.</p>
-          
-      <p>Мы осознаем важность качества на каждом этапе – от выбора материалов до отшива и доставки. Поэтому мы работаем только с надежными поставщиками и тщательно контролируем качество каждой единицы товара.</p>
-          
-      <p>Наша миссия – создавать одежду, которая приносит радость и комфорт. Мы стремимся к тому, чтобы каждая покупка в ZA'I становилась приятным и незабываемым событием. Мы всегда открыты для ваших предложений и готов учитывать ваши пожелания.</p>
-          
-      <p>Присоединяйтесь к нашему сообществу и откройте для себя мир стиля и комфорта от ZA'I!</p>
-  </div>
-  <div></div>
+        <li>понимать желания покупателей,</li>
+        <li>следить за трендами,</li>
+        <li>и совершенствовать качество</li>
+        
+    <div class="par-1">
+      <h3>Сегодня ZA'I – это больше, чем носки</h3>
+      <p>Теперь мы создаем стильную и комфортную одежду:
+
+        <li><strong>Женская одежда:</strong> платья, юбки, блузки, брюки – классика и тренды для любых случаев.</li>
+        <li><strong>Детская одежда:</strong>вещи из гипоаллергенных материалов для малышей и подростков.</li>
+      
+      <h3>Почему выбирают ZA'I</h3>
+      <p>Мы контролируем качество на каждом этапе:
+
+        <li>от выбора материалов до доставки,</li>
+        <li>сотрудничая с надежными поставщиками.</li>
+      
+      <h3>Наша миссия</h3>
+      <p>Мы создаем одежду, которая дарит радость и комфорт. Каждая покупка в ZA'I – это особенное событие.</p>
+      
+      <h3>Присоединяйтесь к нам!</h3>
+      <p>Вместе откроем мир стиля и удобства. Мы всегда рады вашим пожеланиям и готовы улучшаться для вас!</p>
+
+    </div>
 </section>
 {% endblock content %}

@@ -1,5 +1,6 @@
 from django.db.models import Q
 from main.models import Products 
+
 def q_search(query):
     keywords = [word for word in query.split() if len(word)>2]
     q_objects=Q()
