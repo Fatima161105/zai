@@ -14,6 +14,7 @@ class ProWomen(models.Model):
         db_table: str = 'product1'
         verbose_name: str='Женские товары'
         verbose_name_plural: str ='Женские товары'
+        ordering=("id",)
 
     def __str__(self) -> str:
         return f'{self.name} Количество -{self.quantity}'
@@ -32,6 +33,7 @@ class ProBaby(models.Model):
         db_table: str = 'product2'
         verbose_name: str='Детские товары'
         verbose_name_plural: str ='Детские товары'
+        ordering=("id",)
 
     def __str__(self) -> str:
         return f'{self.name} Количество -{self.quantity}'

@@ -1,13 +1,19 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from django.shortcuts import HttpResponse
 from main.models import Products
 
 
 def index(request) -> HttpResponse:
+
+    page= request.GET.get('page' ,1)
     main = Products.objects.all()
+    paginator =Paginator(main, 6)
+    current_page=paginator.page(int(page))
     context: dict[str, Any] = {
         'title': 'Home - Catalog',
-        }
+        'main': current_page
+    }
     return render(request, 'main/index.html', context)
 
 def about(request) -> HttpResponse:
@@ -17,3 +23,12 @@ def about(request) -> HttpResponse:
     }
     return  render(request, 'main/about.html', context) 
 
+def sproduct2(request, product_slug) -> HttpResponse:
+   
+    sproducts1 =  Products.objects.get(slug=product_slug) 
+
+    context: dict[str,Products] ={
+        'sproducts1': sproducts1
+        
+    }
+    return  render(request, 'main/sproduct1.html', context=context) 

@@ -87,11 +87,23 @@
       {% endfor %}
   </div>
   
-
     <div class="rewind-pages">
-      <a href="#">1</a>
-      <a href="#">2</a>
-      <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+      <a {% if not goods.has_previous%}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+       href="{% if goods.has_previous %}
+       ?page={{goods.previous_page_number}}
+       {% else %}#
+       {% endif %}"
+      <i class="fa fa-arrow-left"aria-hidden="disabled"></i></a>
+ 
+      {% for page in goods.paginator.page_range %}<a {% if goods.number == page %}style="pointer-events: none; opacity: 0.5;"{% endif %} href="?page={{page}}">{{page}}</a>{% endfor %}
+  
+      <a {% if not goods.has_next %}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+       href="{% if goods.has_next %}
+       ?page={{goods.next_page_number}}
+       {% else %}#
+       {% endif %}"
+      <i class="fa fa-arrow-right"aria-hidden="disabled"></i></a>
     </div>
 {% endblock content %}
   

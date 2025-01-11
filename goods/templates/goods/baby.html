@@ -65,15 +65,15 @@
       </nav>
       <div class="product-container">
 
-        {% for product in goods %}
-            <div class="pro">
-                {% if product.image %}
-                  <img src="{{product.image.url}}" alt="{{product.name}}">
+        {% for sproducts in goods %}
+        <div class="pro"> <a href="{% url "goods:sproduct" sproducts.slug  %}">
+                {% if sproducts.image %}
+                  <img src="{{sproducts.image.url}}" alt="{{sproducts.name}}">
     
                 {% endif %}
                 <div class="content">
-                    <h1>{{product.price}}р.</h1>
-                    <span>{{product.name}}</span>
+                    <h1>{{sproducts.price}}р.</h1>
+                    <span>{{sproducts.name}}</span>
                     <div class="stars">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -82,14 +82,28 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
                 </div>
+              </a>
             </div>
         {% endfor %}
     </div>
     
-  
       <div class="rewind-pages">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+  
+        <a {% if not goods.has_previous%}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+         href="{% if goods.has_previous %}
+         ?page={{goods.previous_page_number}}
+         {% else %}#
+         {% endif %}"
+        <i class="fa fa-arrow-left"aria-hidden="disabled"></i></a>
+   
+        {% for page in goods.paginator.page_range %}<a {% if goods.number == page %}style="pointer-events: none; opacity: 0.5;{% endif %} href="?page={{page}}">{{page}}</a>{% endfor %}
+    
+        <a {% if not goods.has_next %}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+         href="{% if goods.has_next %}
+         ?page={{goods.next_page_number}}
+         {% else %}#
+         {% endif %}"
+        <i class="fa fa-arrow-right"aria-hidden="disabled"></i></a>
       </div>
-      {% endblock content %}
+  {% endblock content %}
+    

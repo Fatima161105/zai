@@ -24,8 +24,6 @@ urlpatterns: list = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
     path('',include('goods.urls', namespace='goods'))
-
-    
 ]
 if settings.DEBUG:
     urlpatterns += [path("__debug__/", include("debug_toolbar.urls")),]

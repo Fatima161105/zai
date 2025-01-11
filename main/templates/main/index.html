@@ -1,7 +1,7 @@
 {% extends "main/base.html" %}
 
 {% load static %}
-{% load main_tags %}
+
 
 {% block css %}
    <link rel="stylesheet" href="{% static "deps\style.css" %}">
@@ -52,13 +52,13 @@
     <p class="w-brand">ZA'I</p>
     <p class="w-land one-land">ЖЕНСКАЯ</p>
      <p class="w-land two-land">одежда</p>
-     <a href="{% url "catalog:women" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
+     <a href="{% url "goods:women" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
   </div>
   <article class="ch-clothes">
     <p class="w-brand">ZA'I</p>
     <p class="w-land one-land">ДЕТСКАЯ</p>
      <p class="w-land two-land">одежда</p>      
-     <a href="{% url "catalog:baby" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
+     <a href="{% url "goods:baby" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
   </article>
 </div>
 <div >
@@ -98,16 +98,15 @@
     </div>
   </nav>
   <div class="product-container">
-    {%tag_products as main%}
-    {% for sproduct in main %}
-            <div class="pro" onclick="window.location.href='sproduct.html';">
-            {% if sproduct.image %}
-              <img src="{{sproduct.image.url}}" alt="{{sproduct.name}}">
+    {% for sproducts1 in main %}
+    <div class="pro"> <a href="{% url "main:sproduct1" sproducts1.slug  %}">
+            {% if sproducts1.image %}
+              <img src="{{sproducts1.image.url}}" alt="{{sproducts1.name}}">
 
             {% endif %}
             <div class="content">
-                <h1>{{sproduct.price}}р.</h1>
-                <span>{{sproduct.name}}</span>
+                <h1>{{sproducts1.price}}р.</h1>
+                <span>{{sproducts1.name}}</span>
                 <div class="stars">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -116,15 +115,31 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </div>
             </div>
+          </a>
         </div>
     {% endfor %}
 </div>
 
-
-  
   <div class="rewind-pages">
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+    <a {% if not main.has_previous%}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+     href="{% if main.has_previous %}
+     ?page={{main.previous_page_number}}
+     {% else %}#
+     {% endif %}"
+    <i class="fa fa-arrow-left"aria-hidden="True"></i></a>
+
+    {% for page in main.paginator.page_range %}
+    <a {% if main.number == page %}style="pointer-events: none; opacity: 0.5;"
+      {% endif %} href="?page={{page}}">{{page}}</a>
+      {% endfor %}
+
+    <a {% if not main.has_next %}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+     href="{% if main.has_next %}
+     ?page={{main.next_page_number}}
+     {% else %}#
+     {% endif %}"
+    <i class="fa fa-arrow-right"aria-hidden="True"></i></a>
   </div>
 {% endblock content %}
+

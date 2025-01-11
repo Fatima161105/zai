@@ -1,33 +1,54 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from django.shortcuts import HttpResponse
 from goods.models import ProWomen,ProBaby
 
 
 def women(request) -> HttpResponse:
+    page=request.GET.get('page',1)
     goods=ProWomen.objects.all()
+    paginator =Paginator(goods,6)
+    current_page=paginator.page(int(page))
     context: dict[str, Any] = {
          
         'title': 'Home - Женская одежда',
         'content':"ЖЕНСКАЯ ОДЕЖДА",
-        'goods': goods
+        'goods': current_page
     }
     return  render(request, 'goods/women.html', context)   
 
 def baby(request) -> HttpResponse:
+    page=request.GET.get('page',1)
     goods=ProBaby.objects.all()
+    paginator =Paginator(goods,6)
+    current_page=paginator.page(int(page))
+
     context: dict[str, Any] = {
         'title': 'Home - Детская одежда',
         'content':"ДЕТСКАЯ ОДЕЖДА",
-        'goods': goods
+        'goods': current_page
     }
     return  render(request, 'goods/baby.html', context) 
 
-def sproduct(request, product1_slug) -> HttpResponse:
-    sproducts = ProWomen.objects.get(slug=product1_slug)
+def sproduct(request, product1_slug,) -> HttpResponse:
+   
+    sproducts =  ProWomen.objects.get(slug=product1_slug) 
+
     context: dict[str,ProWomen] ={
         'sproducts': sproducts
+        
     }
-    return  render(request, 'goods/sproduct.html', context=context)   
+    return  render(request, 'goods/sproduct.html', context=context) 
+
+def sproduct1(request, product2_slug,) -> HttpResponse:
+   
+    sproducts =  ProBaby.objects.get(slug=product2_slug) 
+
+    context: dict[str,ProBaby] ={
+        'sproducts': sproducts
+        
+    }
+    return  render(request, 'goods/sproduct.html', context=context)  
 
 def cart(request) -> HttpResponse:
     context: dict[str, str] = {
@@ -42,3 +63,4 @@ def checkout(request) -> HttpResponse:
         'content':"Оформление заказа"
     }
     return  render(request, 'goods/checkout.html', context)   
+

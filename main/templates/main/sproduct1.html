@@ -1,0 +1,65 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+
+{% block navigator %}
+<section id="header">
+  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
+  <div> 
+    <ul id="navbarNavAltMarkup">
+        <li>
+            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+     <li>
+        <a href="{% url "main:about" %}">О НАС</a>
+     </li>
+      <li>
+        <a href="buy.html">МОИ ЗАКАЗЫ</a>
+      </li>
+      <li>
+        <a href="contacts.html">КОНТАКТЫ</a>
+      </li>
+        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+    </ul>
+  </div>
+</section>
+{% endblock navigator %}
+
+{% block content %}
+<div id="{{sproducts1.id}}">
+<selection id="prodetails" class="section-p1">
+
+    <div class="single-pro-image">
+      {% if sproducts1.image %}
+        <img src="{{sproducts1.image.url}}" width="100%" id="MaimImg" alt="">
+        {% endif %}
+    </div>
+    <div class="single-pro-details">
+      <h6>Главный /{{sproducts1.name}}</h6>
+      <h4>{{sproducts1.name}}</h4>
+      <h2>{{sproducts1.price}}.</h2>
+      <select>
+        <option>Выберите размер</option>
+        <option>37-42</option>
+      </select>
+      <input type="number" value="1">
+      <button class="normal">Добавить в корзину</button>
+      <h4>Описание</h4>
+      <span> <p><b>Основная информация</b></p>
+      <p>Состав:	Хлопок 80%, Нейлон 15%, Спандекс 5%</p>
+      <p>Цвет:	бежевый; белый; коричневый</p>
+      <p><b>Дополнительная информация</b></p>
+      <p>Декоративные элементы:	шанель</p>
+      <p><b>Описание</b></p>
+      <p>{{sproducts.description}}</p></span>
+
+    </div>
+</selection>
+</div>
+    {% endblock  %}
