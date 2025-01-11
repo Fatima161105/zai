@@ -18,10 +18,12 @@
       <div id="login" class="form-section active">
         <h2>Добро пожаловать в ZA’I!</h2>
         <form action ="{% url "main:login" %}" method ="post">
-          <label for="email"></label>
-          <input type="text" id="email" placeholder="Введите email или номер телефона" required>
-          <label for="password"></label>
-          <input type="password" id="password" placeholder="Введите пароль" required>
+          {% csrf_token %}
+          
+          <label for="id_email"></label>
+          <input type="text" class="form-control" value ="{% if form.email.value %}{{form.email.value}}{% endif %}" name="email" id="id_email" placeholder="Введите email или номер телефона" required>
+          <label for="id_password"></label>
+          <input type="password" class="form-control" name="password"id="id_password" placeholder="Введите пароль" required>
           <button type="submit" class="btn--md">Войти</button>
         </form>
         <p>Нет аккаунта? <a href="javascript:void(0);" onclick="showRegisterForm()">Зарегистрироваться</a></p>
