@@ -23,7 +23,8 @@ from zai import settings
 urlpatterns: list = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
-    path('catalog/', include('goods.urls', namespace='catalog'))
+    path('',include('goods.urls', namespace='goods'))
+
     
 ]
 if settings.DEBUG:

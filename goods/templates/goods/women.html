@@ -63,138 +63,31 @@
         </div>
       </div>
     </nav>
-    <div class="product-container-2">
-      <div class="pro" onclick="window.location.href='{% url "catalog:sproduct" %}';">
-        <img src="{% static "deps/images/p1.png" %}" alt="">
-        <div class="content">
-          <h1>559 р.</h1>
-          <span>Носки женские с принтами</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
+    <div class="product-container" >
+
+      {% for sproducts in goods %}
+      <div class="pro"> <a href="{% url "goods:sproduct" sproducts.slug  %}">
+              {% if sproducts.image %}
+                <img src="{{sproducts.image.url}}" alt="{{sproducts.name}}">
+  
+              {% endif %}
+              <div class="content">
+                  <h1>{{sproducts.price}}р.</h1>
+                  <span>{{sproducts.name}}</span>
+                  <div class="stars">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+              </div>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p17.png" %}" alt="">
-        <div class="content">
-          <h1>1366 р.</h1>
-          <span>Тапочки Хигуруми Хэллоу Китти </span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p18.png" %}" alt="">
-        <div class="content">
-          <h1>587 р.</h1>
-          <span>Носки женские с принтами</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p7.png" %}" alt="">
-        <div class="content">
-          <h1>960 р.</h1>
-          <span>Носки женские махровые 
-            высокие 5 пар</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p6.png" %}" alt="">
-        <div class="content">
-          <h1>1340 р.</h1>
-          <span>Рубашка праздничная с 
-            длинными рукавами</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p21.png" %}" alt="">
-        <div class="content">
-          <h1>829 р.</h1>
-          <span>Носки женские с надписями</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p19.png" %}" alt="">
-        <div class="content">
-          <h1>774 р.</h1>
-          <span>Носки женские с принтами</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/images/p21 (2).png" %}" alt="">
-        <div class="content">
-          <h1>604 р.</h1>
-          <span>Носки женские в 
-            разноцветные полоски</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="pro">
-        <img src="{% static "deps/mages/p22.png" %}" alt="">
-        <div class="content">
-          <h1>950 р.</h1>
-          <span>Носки женские 
-            кашемировые высокие</span>
-          <div class="stars">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-    </div>
+      {% endfor %}
+  </div>
+  
+
     <div class="rewind-pages">
       <a href="#">1</a>
       <a href="#">2</a>

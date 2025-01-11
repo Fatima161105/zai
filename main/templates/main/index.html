@@ -100,7 +100,7 @@
   <div class="product-container">
     {%tag_products as main%}
     {% for sproduct in main %}
-        <div class="pro">
+            <div class="pro" onclick="window.location.href='sproduct.html';">
             {% if sproduct.image %}
               <img src="{{sproduct.image.url}}" alt="{{sproduct.name}}">
 

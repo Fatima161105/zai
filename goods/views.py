@@ -1,28 +1,33 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-
+from goods.models import ProWomen,ProBaby
 
 
 def women(request) -> HttpResponse:
-    context: dict[str, str] = {
+    goods=ProWomen.objects.all()
+    context: dict[str, Any] = {
+         
         'title': 'Home - Женская одежда',
-        'content':"ЖЕНСКАЯ ОДЕЖДА"
+        'content':"ЖЕНСКАЯ ОДЕЖДА",
+        'goods': goods
     }
     return  render(request, 'goods/women.html', context)   
 
 def baby(request) -> HttpResponse:
-    context: dict[str, str] = {
+    goods=ProBaby.objects.all()
+    context: dict[str, Any] = {
         'title': 'Home - Детская одежда',
-        'content':"ДЕТСКАЯ ОДЕЖДА"
+        'content':"ДЕТСКАЯ ОДЕЖДА",
+        'goods': goods
     }
     return  render(request, 'goods/baby.html', context) 
 
-def sproduct(request) -> HttpResponse:
-    context: dict[str, str] = {
-        'title': 'Home - Карточка товара',
-        'content':""
+def sproduct(request, product1_slug) -> HttpResponse:
+    sproducts = ProWomen.objects.get(slug=product1_slug)
+    context: dict[str,ProWomen] ={
+        'sproducts': sproducts
     }
-    return  render(request, 'goods/sproduct.html', context)   
+    return  render(request, 'goods/sproduct.html', context=context)   
 
 def cart(request) -> HttpResponse:
     context: dict[str, str] = {
