@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.shortcuts import HttpResponse
@@ -6,20 +7,11 @@ from main.models import Products
 from main.utils import q_search
 from django.contrib import auth
 from django.urls import reverse
-from main.forms import UserLoginForm
+from main.forms import UserLoginForm, UserRegistrationForm
+
 
 def index(request) -> HttpResponse:
-    if request.method =='POST':
-        form=UserLoginForm(data=request.POST)
-        if form.is_valid():
-            email = request.POST['email']
-            password = request.POST['password']
-            user = auth.authenticate(email=email, password=password)
-            if user:
-                auth.login(request, user)
-                return HttpResponseRedirect(reverse('main:index'))
-    else:
-        form=UserLoginForm()
+    
     page= request.GET.get('page' ,1)
     order_by= request.GET.get('order_by' , None)
     query= request.GET.get('q' , None)
@@ -36,7 +28,6 @@ def index(request) -> HttpResponse:
     context: dict[str, Any] = {
         'title': 'Home - Catalog',
         'main': current_page,
-        'form':form
     }
     return render(request, 'main/index.html', context)
 
@@ -58,16 +49,36 @@ def sproduct2(request, product_slug) -> HttpResponse:
     return  render(request, 'main/sproduct1.html', context=context) 
 
 def login(request):
-    context={
-        'title': 'Home-Авторизация'
+    if request.method =='POST':
+        form=UserLoginForm(data=request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = auth.authenticate(email=email, password=password)
+            if user:
+                auth.login(request, user)
+                return HttpResponseRedirect(reverse('main:index'))
+    else:
+        form=UserLoginForm()
+    context: dict[str, str]={
+        'title': 'Home-Авторизация',
+        'form': form
     }
-    return render(request,'main/login.html', context)
+    return render(request,'main/index.html', context)
 
 def registration(request):
-    context={
-        'title': 'Home-Регистрация'
+    if request.method =='POST':
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('main:index'))
+    else:
+        form = UserRegistrationForm()
+    context: dict[str, str]={
+        'title': 'Home-Регистрация',
+        'form': form
     }
-    return render(request,'main/registration.html', context)
+    return render(request,'main/index.html', context)
     
 def logout(request):
     ...

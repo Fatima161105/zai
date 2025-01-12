@@ -9,8 +9,8 @@ urlpatterns: list = [
     path('search/', views.index, name='search'),
     path('sproduct1/<slug:product_slug>/', views.sproduct2, name='sproduct1'),
     path('about', views.about, name='about'),
-    path('login', views.index, name='login'),
-    path('registration/', views.registration, name='registartion'),
+    path('login', views.login, name='login'),
+    path('registration', views.registration, name='registration'),
     path('logout/', views.logout, name='logout'),
      
 ]

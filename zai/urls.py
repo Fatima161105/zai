@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from zai import settings
+from zai.settings import DEBUG
 
 
 urlpatterns: list = [
