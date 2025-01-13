@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+{% block content %}
+  <body>
+    <div class="row justify-content-center">
+    <div class="mb-3">
+
+    <div class="form-container">
+      <!-- Форма авторизации (по умолчанию) -->
+      <div id="login" class="form-section " >
+        <h2>Добро пожаловать в ZA’I!</h2>
+        <form action ="{% url "users:login" %}" method ="post">
+          {% csrf_token %}
+          <label for="id_email"></label>
+          <input type="email" class="form-control" value ="{% if form.email.value %}{{form.email.value}}{% endif %}" name="email" id="id_email" placeholder="Введите email" required>
+          {% if form.email.errors %}
+          <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+          {% endif %}
+          <label for="id_password"></label>
+          <input type="password" class="form-control" name="password" id="id_password" placeholder="Введите пароль" required>
+          {% if form.password.errors %}
+          <div class="alert alert-danger alert-dismissible fade show">{{form.password.errors}}</div>
+          {% endif %}
+          <button type="submit" class="btn--md">Войти</button>
+        </form>
+        <p>Нет аккаунта? <a href="{% url "users:registration" %}">Зарегистрироваться</a></p>
+      </div>
+   </div>
+</div>
+</div>
+{% endblock  %}

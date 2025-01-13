@@ -1,13 +1,16 @@
+
+from django.contrib import auth, messages
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from django.shortcuts import HttpResponse
 from django.http import HttpResponseRedirect
 from main.models import Products
 from main.utils import q_search
-from django.contrib import auth
+from django.contrib.auth import views as auth_views
+from django.contrib.auth import login
 from django.urls import reverse
-from main.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm
 
 
 def index(request) -> HttpResponse:
@@ -48,37 +51,3 @@ def sproduct2(request, product_slug) -> HttpResponse:
     }
     return  render(request, 'main/sproduct1.html', context=context) 
 
-def login(request):
-    if request.method =='POST':
-        form=UserLoginForm(data=request.POST)
-        if form.is_valid():
-            email = request.POST['email']
-            password = request.POST['password']
-            user = auth.authenticate(email=email, password=password)
-            if user:
-                auth.login(request, user)
-                return HttpResponseRedirect(reverse('main:index'))
-    else:
-        form=UserLoginForm()
-    context: dict[str, str]={
-        'title': 'Home-Авторизация',
-        'form': form
-    }
-    return render(request,'main/index.html', context)
-
-def registration(request):
-    if request.method =='POST':
-        form = UserRegistrationForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('main:index'))
-    else:
-        form = UserRegistrationForm()
-    context: dict[str, str]={
-        'title': 'Home-Регистрация',
-        'form': form
-    }
-    return render(request,'main/index.html', context)
-    
-def logout(request):
-    ...
