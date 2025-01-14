@@ -1,3 +1,4 @@
+
 from django.shortcuts import redirect, render
 
 from django.contrib import auth, messages
@@ -14,44 +15,43 @@ def profile(request):
     return render(request,'users/profile.html', context)
 
 def login(request) -> HttpResponse:
-    form = UserLoginForm(data=request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
-        user = auth.authenticate(request, email=email, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            return HttpResponseRedirect(reverse('users:index'))  # Перенаправление на профиль
-        else:
-            messages.error(request, "Неправильный email или пароль.")  # Сообщение об ошибке
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username= username, password=password)
+            if user is not None:
+                auth.login(request, user)
+            return HttpResponseRedirect(reverse('main:index'))
     else:
-        print(form.errors)  # Лог ошибок формы
-
-    context = {
-        'title': 'Авторизация',
+        form = UserLoginForm()
+    context: dict[str, str]={
+        'title': 'Home - Регистрация',
         'form': form
     }
     return render(request, 'users/login.html', context)
 
-
 def registration(request):
-    form = UserRegistrationForm(data=request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        user = form.save(commit=False)  # Создаем пользователя, но не сохраняем сразу
-        user.set_password(form.cleaned_data['password'])  # Устанавливаем пароль
-        user.save()  # Сохраняем пользователя
-        auth.login(request, user)  # Авторизуем пользователя
-        return redirect(reverse('users:login'))  # Перенаправляем на профиль
-    else:
-        print(form.errors)  # Лог ошибок формы
+    if request.method == 'POST':
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.instance
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('users:login'))
 
-    context = {
-        'title': 'Регистрация',
+    else:
+        form = UserRegistrationForm()
+
+    context: dict[str, str]={
+
+        'title': 'Home - Регистрация',
         'form': form
     }
     return render(request, 'users/registration.html', context)
 
 
 def logout(request):
-    ...
+    auth.logout(request)
+    return redirect(reverse('main:index'))

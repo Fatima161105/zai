@@ -7,43 +7,6 @@
 {% endblock css %}
 
 {% block navigator %}
-<!-- Модальное окно для авторизации и регистрации -->
-<div class="modal" id="loginModal">
-  <div class="modal-content">
-    <span class="close" id="closeModal">&times;</span>
-    <div class="form-container">
-      <!-- Форма авторизации (по умолчанию) -->
-      <div id="login" class="form-section active">
-        <h2>Добро пожаловать в ZA’I!</h2>
-        <form>
-          <label for="email"></label>
-          <input type="text" id="email" placeholder="Введите email или номер телефона" required>
-          <label for="password"></label>
-          <input type="password" id="password" placeholder="Введите пароль" required>
-          <button type="submit" class="btn--md">Войти</button>
-        </form>
-        <p>Нет аккаунта? <a href="javascript:void(0);" onclick="showRegisterForm()">Зарегистрироваться</a></p>
-      </div>
-
-      <!-- Форма регистрации, скрытая по умолчанию -->
-      <div id="register" class="form-section" style="display: none;">
-        <h2>Добро пожаловать в ZA’I!</h2>
-        <form>
-          <label for="regEmail"></label>
-          <input type="email" id="regEmail" placeholder="Введите email" required>
-          <label for="regPhone"></label>
-          <input type="text" id="regPhone" placeholder="Введите номер телефона" required>
-          <label for="regName"></label>
-          <input type="text" id="regName" placeholder="Введите имя" required>
-          <label for="regPassword"></label>
-          <input type="password" id="regPassword" placeholder="Введите пароль" required>
-          <button type="submit" class="btn--md">Зарегистрироваться</button>
-        </form>
-        <p>Уже есть аккаунт? <a href="javascript:void(0);" onclick="showLoginForm()">Войти</a></p>
-      </div>
-    </div>
-  </div>
-</div>
     <section id="header">
       <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
       <div> 
@@ -60,10 +23,21 @@
           <li>
             <a href="#contacts">КОНТАКТЫ</a>
           </li>
-            <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
-            <a class="pad-1" href="{% url "user:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
-            <a class="pad-2" href="javascript:void(0);" id="loginIcon"><img src="{% static "deps/images/логин.jpg" %}" width="50px" height="50px"></a>
-        </ul>
+          {% if user.is_admin or user.is_staff%}
+          <li>
+            <a href="{% url "admin:index" %}">Админ</a>
+          </li>
+          {% endif %}
+            {% if not user.is_authenticated %}
+             <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+              <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+              <a class="pad-2" href="{% url "users:login" %}"><img src="{% static "deps\images\photo_2025-01-11_23-00-19.jpg" %}" width="50px" height="50px"></a>
+            {% else %}
+              <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+             <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+             <a class="pad-2" href="{% url "users:logout" %}"><img src="{% static "deps\images\Frame 46@2x.png" %}" width="50px" height="50px"></a>
+            {% endif %}
+            </ul>
       </div>
     </section>
 {% endblock navigator %}

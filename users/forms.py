@@ -3,30 +3,42 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from users.models import User
 
 class UserLoginForm(AuthenticationForm):
-    email =forms.CharField()
-    password = forms.CharField()
- #email =forms.CharField(
-#     widget=forms.TextInput(attrs ={"autofocus": True,
-#                                     'class':'form-control',
-#                                     'placeholder': 'Введите email или номер телефона'})
-# )
-#password = forms.CharField(
-#    widget=forms.PasswordInput(attrs={"autocomplete": "current-password",
-  #                                     'class':'form-control',
-  #                                     'placeholder': 'Введите ваш пароль'})
+
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Введите имя пользователя"
+        })
+    )
 
     class Meta:
         model = User
-        fields= ('email','password')
+        fields= ['email']
 
 class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            "autofocus": True,
+            "class": "form-control",
+            "placeholder": "Введите email"
+        })
+    )
+    phone = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Введите номер телефона"
+        })
+    )
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Введите имя пользователя"
+        })
+    )
+
     class Meta:
         model = User
-        fields = ["email", "phone", "username", "password"]
-    email = forms.CharField()
-    phone = forms.CharField()
-    username = forms.CharField()
-    password = forms.CharField()
+        fields = ["email", "phone", "username"]
 
 
 
