@@ -6,13 +6,22 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import login
 from django.urls import reverse
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 
 def profile(request):
-    context={
-        'title': 'Home-Кабинет'
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Профайл успешно обновлен")
+            return HttpResponseRedirect(reverse('users:profile'))
+    else:
+        form = ProfileForm(instance=request.user)
+    context = {
+        'title': 'Home - Кабинет',
+        'form': form
     }
-    return render(request,'users/profile.html', context)
+    return render(request, 'users/profile.html', context)
 
 def login(request) -> HttpResponse:
     if request.method == 'POST':
