@@ -1,4 +1,4 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
 
 {% load static %}
 
@@ -55,7 +55,7 @@
             </thead>
             <tbody>
               <tr>
-                <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                <td><a href="{% url "cart:cart_remove" %}"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                 <td><img src="{% static "deps/images/p1.png" %}" alt=""></td>
                 <td>Носки женские с принтами</td>
                 <td>37-42</td>

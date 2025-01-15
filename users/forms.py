@@ -59,4 +59,3 @@ class ProfileForm(UserChangeForm):
     username = forms.CharField()
     last_name = forms.CharField(required=False)
 
-    
