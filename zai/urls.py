@@ -18,13 +18,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from zai import settings
+from zai.settings import DEBUG
 
 
 urlpatterns: list = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
-    path('catalog/', include('goods.urls', namespace='catalog'))
-    
+    path('',include('goods.urls', namespace='goods')),
+    path('user/', include('users.urls', namespace='users')),
+    path('cart/', include('carts.urls', namespace='cart'))
 ]
 if settings.DEBUG:
     urlpatterns += [path("__debug__/", include("debug_toolbar.urls")),]

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+{% block navigator %}
+    <section id="header">
+      <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
+      <div> 
+        <ul id="navbarNavAltMarkup">
+          <li>
+            <a class="active" href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+          <li>
+            <a href="{% url "main:about" %}">О НАС</a>
+          </li>
+          <li>
+            <a href="">МОИ ЗАКАЗЫ</a>
+          </li>
+          <li>
+            <a href="#contacts">КОНТАКТЫ</a>
+          </li>
+          {% if user.is_admin or user.is_staff%}
+          <li>
+            <a href="{% url "admin:index" %}">Админ</a>
+          </li>
+          {% endif %}
+            {% if not user.is_authenticated %}
+             <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+              <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+              <a class="pad-2" href="{% url "users:login" %}"><img src="{% static "deps\images\photo_2025-01-11_23-00-19.jpg" %}" width="50px" height="50px"></a>
+            {% else %}
+              <a class="pad-1" href="{% url "carts:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+             <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+             <a class="pad-2" href="{% url "users:logout" %}"><img src="{% static "deps\images\Frame 46@2x.png" %}" width="50px" height="50px"></a>
+            {% endif %}
+            </ul>
+      </div>
+    </section>
+{% endblock navigator %}
+
+{% block content %}
+<div id="{{sproducts1.id}}">
+<selection id="prodetails" class="section-p1">
+
+    <div class="single-pro-image">
+      {% if sproducts1.image %}
+        <img src="{{sproducts1.image.url}}" width="100%" id="MaimImg" alt="">
+        {% endif %}
+    </div>
+    <div class="single-pro-details">
+      <h6>Главный /{{sproducts1.name}}</h6>
+      <h4>{{sproducts1.name}}</h4>
+      <h2>{{sproducts1.price}}.</h2>
+      <select>
+        <option>Выберите размер</option>
+        <option>37-42</option>
+      </select>
+      <input type="number" value="1">
+      <a href="{% url "cart:cart_add" sproducts1.slug %}"<button class="normal">Добавить в корзину</button></a>
+      <h4>Описание</h4>
+      <span> <p><b>Основная информация</b></p>
+      <p>Состав:	Хлопок 80%, Нейлон 15%, Спандекс 5%</p>
+      <p>Цвет:	бежевый; белый; коричневый</p>
+      <p><b>Дополнительная информация</b></p>
+      <p>Декоративные элементы:	шанель</p>
+      <p><b>Описание</b></p>
+      <p>{{sproducts.description}}</p></span>
+
+    </div>
+</selection>
+</div>
+    {% endblock  %}

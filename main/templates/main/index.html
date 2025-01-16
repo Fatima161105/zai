@@ -1,6 +1,7 @@
-{% extends "main/base.html" %}
+{% extends "base.html" %}
 
 {% load static %}
+ 
 {% load main_tags %}
 
 {% block css %}
@@ -8,27 +9,39 @@
 {% endblock css %}
 
 {% block navigator %}
-<section id="header">
-  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
-  <div> 
-    <ul id="navbarNavAltMarkup">
-        <li>
-            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
+    <section id="header">
+      <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
+      <div> 
+        <ul id="navbarNavAltMarkup">
+          <li>
+            <a class="active" href="{% url "main:index" %}" >КАТАЛОГ</a>
           </li>
-     <li>
-        <a href="{% url "main:about" %}">О НАС</a>
-     </li>
-      <li>
-        <a href="buy.html">МОИ ЗАКАЗЫ</a>
-      </li>
-      <li>
-        <a href="contacts.html">КОНТАКТЫ</a>
-      </li>
-        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
-        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
-    </ul>
-  </div>
-</section>
+          <li>
+            <a href="{% url "main:about" %}">О НАС</a>
+          </li>
+          <li>
+            <a href="">МОИ ЗАКАЗЫ</a>
+          </li>
+          <li>
+            <a href="#contacts">КОНТАКТЫ</a>
+          </li>
+          {% if user.is_admin or user.is_staff%}
+          <li>
+            <a href="{% url "admin:index" %}">Админ</a>
+          </li>
+          {% endif %}
+            {% if not user.is_authenticated %}
+             <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+              <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+              <a class="pad-2" href="{% url "users:login" %}"><img src="{% static "deps\images\photo_2025-01-11_23-00-19.jpg" %}" width="50px" height="50px"></a>
+            {% else %}
+              <a class="pad-1" href="{% url "carts:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+             <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+             <a class="pad-2" href="{% url "users:logout" %}"><img src="{% static "deps\images\Frame 46@2x.png" %}" width="50px" height="50px"></a>
+            {% endif %}
+            </ul>
+      </div>
+    </section>
 {% endblock navigator %}
 {% block content %}
 <selection>
@@ -52,19 +65,19 @@
     <p class="w-brand">ZA'I</p>
     <p class="w-land one-land">ЖЕНСКАЯ</p>
      <p class="w-land two-land">одежда</p>
-     <a href="{% url "catalog:women" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
+     <a href="{% url "goods:women" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
   </div>
   <article class="ch-clothes">
     <p class="w-brand">ZA'I</p>
     <p class="w-land one-land">ДЕТСКАЯ</p>
      <p class="w-land two-land">одежда</p>      
-     <a href="{% url "catalog:baby" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
+     <a href="{% url "goods:baby" %}"><img class="arrow" src ="{% static "deps/images/left-chevron_12428509.png" %}" width="50px" height="50px"></a>
   </article>
 </div>
 <div >
   <p class="factory"><img src="{% static "deps/images/factory.png" %}"width="31px" height="30px">Собственное производство</p>
   <p class="quality"><img src="{% static "deps/images/quality.png" %}" width="28px" height="25px">Полный контроль качества ткани</p>
-  <img class="line-1"src="images/Line 1.png">
+  <img class="line-1"src="{% static "deps/images/Line 1.png" %}">
 </div>
 <div class="back-cat">
   <p class="catalog-r">КАТАЛОГ</p>
@@ -83,31 +96,41 @@
               Фильтры
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <form  action ="{% if request.GET.q %}{% url "main:search" %}{% else %}{% url "main:index" %}{% endif %}" method="get">
+              <li>
+                <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="default" checked>
+                <label class="form-check-label" for="flexRadioDefault1">По умолчанию</label>
+              </li>
+              <li>
+                <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="price" c>
+                <label class="form-check-label" for="flexRadioDefault1">От дешевых к дорогим</label>
+              </li>
+              <li>
+                <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="-price">
+                <label class="form-check-label" for="flexRadioDefault1">От дорогих к дешевым</label>
+              </li>
+              <button type="submit" class="btn btn-primary mx-3 mt-3">Применить </button>
             </ul>
           </li>
+        </form>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Поиск товаров" aria-label="Search">
+        <form class="d-flex" role="search" action ="{% url "main:search"%}" method="get">
+          <input class="form-control me-2" type="search" name="q" placeholder="Поиск товаров" aria-label="Search">
           <button class="btn btn-outline-dark" type="submit">Найти</button>
         </form>
       </div>
     </div>
   </nav>
-  <div class="product-container">
-    {%tag_products as main%}
-    {% for sproduct in main %}
-        <div class="pro">
-            {% if sproduct.image %}
-              <img src="{{sproduct.image.url}}" alt="{{sproduct.name}}">
+  <div id="products-middle" class="product-container">
+    {% for sproducts1 in main %}
+    <div class="pro"> <a href="{% url "main:sproduct1" sproducts1.slug  %}">
+            {% if sproducts1.image %}
+              <img src="{{sproducts1.image.url}}" alt="{{sproducts1.name}}">
 
             {% endif %}
             <div class="content">
-                <h1>{{sproduct.price}}р.</h1>
-                <span>{{sproduct.name}}</span>
+                <h1>{{sproducts1.price}}р.</h1>
+                <span>{{sproducts1.name}}</span>
                 <div class="stars">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -116,15 +139,32 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                 </div>
             </div>
+          </a>
         </div>
     {% endfor %}
 </div>
 
-
-  
   <div class="rewind-pages">
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+    <a {% if not main.has_previous%}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+     href="{% if main.has_previous %}
+     ?{% change_params page=main.previous_page_number %}
+     {% else %}#
+     {% endif %}">
+    <i class="fa fa-arrow-left"aria-hidden="True"></i></a>
+
+    {% for page in main.paginator.page_range %}
+    <a {% if main.number == page %}style="pointer-events: none; opacity: 0.5;"
+      {% endif %} href="?{% change_params page=page %}">{{page}}</a>
+      {% endfor %}
+
+    <a {% if not main.has_next %}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+     href="{% if main.has_next %}
+     ?{% change_params page=main.next_page_number%}
+     {% else %}#
+     {% endif %}">
+    <i class="fa fa-arrow-right"aria-hidden="True"></i></a>
   </div>
 {% endblock content %}
+
+ 

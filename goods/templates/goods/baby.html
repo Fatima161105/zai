@@ -1,5 +1,5 @@
-{% extends "main/base.html" %}
-
+{% extends "base.html" %}
+{% load main_tags %}
 {% load static %}
 
 {% block css %}
@@ -7,27 +7,39 @@
 {% endblock css %}
 
 {% block navigator %}
-<section id="header">
-  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
-  <div> 
-    <ul id="navbarNavAltMarkup">
-        <li>
-            <a class="active"  href="{% url "main:index" %}" >КАТАЛОГ</a>
+    <section id="header">
+      <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
+      <div> 
+        <ul id="navbarNavAltMarkup">
+          <li>
+            <a class="active" href="{% url "main:index" %}" >КАТАЛОГ</a>
           </li>
-     <li>
-        <a href="{% url "main:about" %}">О НАС</a>
-     </li>
-      <li>
-        <a href="buy.html">МОИ ЗАКАЗЫ</a>
-      </li>
-      <li>
-        <a href="contacts.html">КОНТАКТЫ</a>
-      </li>
-        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
-        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
-    </ul>
-  </div>
-</section>
+          <li>
+            <a href="{% url "main:about" %}">О НАС</a>
+          </li>
+          <li>
+            <a href="">МОИ ЗАКАЗЫ</a>
+          </li>
+          <li>
+            <a href="#contacts">КОНТАКТЫ</a>
+          </li>
+          {% if user.is_admin or user.is_staff%}
+          <li>
+            <a href="{% url "admin:index" %}">Админ</a>
+          </li>
+          {% endif %}
+            {% if not user.is_authenticated %}
+             <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+              <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+              <a class="pad-2" href="{% url "users:login" %}"><img src="{% static "deps\images\photo_2025-01-11_23-00-19.jpg" %}" width="50px" height="50px"></a>
+            {% else %}
+              <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+             <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+             <a class="pad-2" href="{% url "users:logout" %}"><img src="{% static "deps\images\Frame 46@2x.png" %}" width="50px" height="50px"></a>
+            {% endif %}
+            </ul>
+      </div>
+    </section>
 {% endblock navigator %}
 
 {% block content %}
@@ -49,155 +61,100 @@
                   Фильтры
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <form  action ="{% if request.GET.q %}{% url "goods:search1" %}{% else %}{% url "goods:baby" %}{% endif %}" method="get">
+                  <li>
+                    <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="default" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">По умолчанию</label>
+                  </li>
+                  <li>
+                    <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="price" c>
+                    <label class="form-check-label" for="flexRadioDefault1">От дешевых к дорогим</label>
+                  </li>
+                  <li>
+                    <input class="form-check-input" type ="radio"name="order_by" id="flexRadioDefault1" value="-price">
+                    <label class="form-check-label" for="flexRadioDefault1">От дорогих к дешевым</label>
+                  </li>
+                  <button type="submit" class="btn btn-primary mx-3 mt-3">Применить </button>
                 </ul>
               </li>
+            </form>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Поиск товаров" aria-label="Search">
+            <form class="d-flex" role="search" action ="{% url "goods:search1"%}" method="get">
+              <input class="form-control me-2" type="search" name="q" placeholder="Поиск товаров" aria-label="Search">
               <button class="btn btn-outline-dark" type="submit">Найти</button>
             </form>
           </div>
         </div>
       </nav>
-      <div class="product-container-3">
-        <div class="pro">
-          <img src="{% static "deps/images/p23.png" %}" alt="">
-          <div class="content">
-            <h1>1220 р.</h1>
-            <span>Рубашка укороченная для
-                девочки</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
+      <div id="products-middle" class="product-container">
+
+        {% for sproducts in goods %}
+        <div class="pro"> <a href="{% url "goods:sproduct" sproducts.slug  %}">
+                {% if sproducts.image %}
+                  <img src="{{sproducts.image.url}}" alt="{{sproducts.name}}">
+    
+                {% endif %}
+                <div class="content">
+                    <h1>{{sproducts.price}}р.</h1>
+                    <span>{{sproducts.name}}</span>
+                    <div class="stars">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+              </a>
             </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p2.png" %}" alt="">
-          <div class="content">
-            <h1>598 р.</h1>
-            <span>Детские брюки палаццо</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p3.png" %}" alt="">
-          <div class="content">
-            <h1>1233 р.</h1>
-            <span>Хигиуруми для малышей
-                панда</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p24.png" %}" alt="">
-          <div class="content">
-            <h1>619 р.</h1>
-            <span>Юбка школьная</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p25.png" %}" alt="">
-          <div class="content">
-            <h1>656 р.</h1>
-            <span>Носки ля детей</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p4.png" %}" alt="">
-          <div class="content">
-            <h1>657 р.</h1>
-            <span>Носки детские с 
-                принтами</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p5.png" %}" alt="">
-          <div class="content">
-            <h1>500 р.</h1>
-            <span>Носки детские с принтами</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p9.png" %}" alt="">
-          <div class="content">
-            <h1>647 р.</h1>
-            <span>Носки детские Nike</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="pro">
-          <img src="{% static "deps/images/p8.png" %}" alt="">
-          <div class="content">
-            <h1>1068 р.</h1>
-            <span>Рубашка школьная для
-                девочки</span>
-            <div class="stars">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rewind-pages">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-      </div>
-      {% endblock content %}
+        {% endfor %}
+    </div>
+    
+    <div class="rewind-pages">
+
+      <a {% if not goods.has_previous%}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+       href="{% if goods.has_previous %}
+       ?{% change_params page=goods.previous_page_number %}
+       {% else %}#
+       {% endif %}"
+      <i class="fa fa-arrow-left"aria-hidden="disabled"></i></a>
+ 
+      {% for page in goods.paginator.page_range %}<a {% if goods.number == page %}style="pointer-events: none; opacity: 0.5;"{% endif %} href="?{% change_params page=page %}">{{page}}</a>{% endfor %}
+  
+      <a {% if not goods.has_next %}style="pointer-events: none; opacity: 0.5;"{% endif %} 
+       href="{% if goods.has_next %}
+       ?{% change_params page=main.next_page_number %}
+       {% else %}#
+       {% endif %}"
+      <i class="fa fa-arrow-right"aria-hidden="disabled"></i></a>
+    </div>
+  {% endblock content %}
+    
+  {% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script scr="script.js"></script>
+    <script>
+      // Открытие модального окна при клике на иконку
+      document.getElementById('loginIcon').addEventListener('click', function() {
+        document.getElementById('loginModal').style.display = 'block';
+      });
+    
+      // Закрытие модального окна при клике на крестик
+      document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('loginModal').style.display = 'none';
+      });
+    
+      // Функция для показа формы регистрации
+      function showRegisterForm() {
+        document.getElementById('login').style.display = 'none';  // Скрыть форму входа
+        document.getElementById('register').style.display = 'block';  // Показать форму регистрации
+      }
+    
+      // Функция для показа формы входа
+      function showLoginForm() {
+        document.getElementById('register').style.display = 'none';  // Скрыть форму регистрации
+        document.getElementById('login').style.display = 'block';  // Показать форму входа
+      }
+    </script>
+    </script>    
+   {% endblock javascript %}

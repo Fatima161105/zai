@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% load static %}
+ 
+{% load main_tags %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "deps\style.css" %}">
+{% endblock css %}
+
+{% block navigator %}
+       <section id="header">
+      <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
+      <div> 
+        <ul id="navbarNavAltMarkup">
+          <li>
+            <a href="{% url "main:index" %}" >КАТАЛОГ</a>
+          </li>
+          <li>
+            <a href="{% url "main:about" %}">О НАС</a>
+          </li>
+          <li>
+            <a href="">МОИ ЗАКАЗЫ</a>
+          </li>
+          <li>
+            <a href="#contacts">КОНТАКТЫ</a>
+          </li>
+          {% if user.is_admin or user.is_staff%}
+          <li>
+            <a href="{% url "admin:index" %}">Админ</a>
+          </li>
+          {% endif %}
+            <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+            <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+            <a class="pad-2" href="{% url "users:logout" %}" id="loginIcon"><img src="{% static "deps\images\Frame 46@2x.png" %}" width="50px" height="50px"></a>
+        </ul>
+      </div>
+    </section>
+    {% endblock navigator %}
+{% block content %}
+  <section class="accounts section--lg">
+    <div class="accounts__container container grid">
+         <div class="account__tabs">
+            <a id="buy" href="#orders" class="account__tab">
+                <i class="fi fi-rs-shopping-bag"></i>Мои заказы
+            </a>
+            <a href="#buys" class="account__tab">
+                <i class="fi fi-rs-shopp-buy"></i>Покупки
+            </a>
+            <a href="#reviews" class="account__tab" >
+                <i class="fi fi-rs-writting-review"></i>Отзывы
+            </a>
+            <a href="{% url 'users:profile' %}#update-profile" class="account__tab">
+                <i class="fi fi-rs-user"></i>Мои данные
+            </a>
+        </div>
+        <div class="tabs__content">
+            <div id="orders" class="tab__content">
+                <h2 class="section__title">Мои заказы</h2>
+            <!-- <div class="tab__body">
+                    <img src="images/каталог.png" alt="" class="orders__img"/>
+                    <h3>Чтобы сделать заказ, прейдите в католог
+                        и добавьте товар в корзину</h3>
+                </div>
+                <div class="catalog__btn">
+                  <a href="index.html"><button class="btn btn--md"><strong>Перейти в каталог</strong></button></a>
+                </div>
+            </div>-->
+            <div class="tab__body">
+              <!-- Карточка заказа -->
+              <div class="order-card">
+                  <div class="order-header">
+                    <p><strong>№ Заказа:</strong> №RU0000-0001</p>
+                    <p><strong>Адресат:</strong> Якубова Зухро Икромджоновна</p>
+                    <p><strong>Адрес:</strong> Екатеринбург, ул.Таватуйская, д.1 г</p>
+                    <p><strong>Время:</strong> 12:30, 10.01.2025</p>
+                    <p><strong>Сумма:</strong> 2390 р.</p>
+                  </div>
+                  <div class="order-status-1">
+                      <span><strong>доставляется</strong></span>
+                  </div>
+                  <div class="order-images">
+                      <img src="images/p1.png" alt="Товар 1">
+                      <img src="images/p2.png" alt="Товар 2">
+                      <img src="images/p3.png" alt="Товар 3">
+                  </div>
+                <!-- Добавляем стрелку -->
+                  <a href="details.html" class="order-arrow">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+              </div>
+              <!-- Конец карточки заказа -->
+  
+              <!-- Карточка заказа -->
+              <div class="order-card">
+                  <div class="order-header">
+                    <p><strong>№ Заказа:</strong> №RU0000-0001</p>
+                    <p><strong>Адресат:</strong> Якубова Зухро Икромджоновна</p>
+                    <p><strong>Адрес:</strong> Екатеринбург, ул.Таватуйская, д.1 г</p>
+                    <p><strong>Время:</strong> 12:30, 10.01.2025</p>
+                    <p><strong>Сумма:</strong> 2390 р.</p>
+                  </div>
+                  <div class="order-status-2">
+                      <span><strong>доставлен</strong></span>
+                  </div>
+                  <div class="order-images">
+                      <img src="images/p1.png" alt="Товар 1">
+                      <img src="images/p2.png" alt="Товар 2">
+                      <img src="images/p3.png" alt="Товар 3">
+                  </div>
+                  <a href="details.html" class="order-arrow">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+              </div>
+              <!-- Конец карточки заказа -->
+
+              <!-- Карточка заказа -->
+              <div class="order-card">
+                <div class="order-header">
+                    <p><strong>№ Заказа:</strong> №RU0000-0001</p>
+                    <p><strong>Адресат:</strong> Якубова Зухро Икромджоновна</p>
+                    <p><strong>Адрес:</strong> Екатеринбург, ул.Таватуйская, д.1 г</p>
+                    <p><strong>Время:</strong> 12:30, 10.01.2025</p>
+                    <p><strong>Сумма:</strong> 2390 р.</p>
+                </div>
+                <div class="order-status-3">
+                    <span><strong>отмена</strong></span>
+                </div>
+                <div class="order-images">
+                    <img src="images/p1.png" alt="Товар 1">
+                    <img src="images/p2.png" alt="Товар 2">
+                    <img src="images/p3.png" alt="Товар 3">
+                </div>
+                <a href="details.html" class="order-arrow">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+            <!-- Конец карточки заказа -->
+          </div>
+
+            <div id="buys" class="tab__content">
+                <h2 class="section__title">Покупки</h2>
+                <div class="tab__body">
+                    <div class="pro" onclick="window.location.href='sproduct.html';">
+                        <img src="images/p1.png" alt="">
+                        <div class="content">
+                          <h1>559 р.</h1>
+                          <span>Носки женские с принтами</span>
+                          <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pro">
+                        <img src="images/p2.png" alt="">
+                        <div class="content">
+                          <h1>598 р.</h1>
+                          <span>Детские брюки палаццо</span>
+                          <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pro">
+                        <img src="images/p3.png" alt="">
+                        <div class="content">
+                          <h1>1233 р.</h1>
+                          <span>Хигиуруми для малышей панда</span>
+                          <div class="stars">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </div>  
+                </div>
+            </div>
+
+            <div id="reviews" class="tab__content">
+                <h2 class="section__title">Отзывы</h2>
+                <div class="tab__body">
+                    
+                </div>
+            </div>
+            <div id="update-profile" class="tab__content active">
+                <h2 class="section__title">Мои данные</h2>
+                <div class="tab__body">
+                    <form id="profile-form" action="{% url 'users:profile' %}#update-profile" method="POST" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        n<!-- Поле для загрузки аватарки -->
+                        <div class="form-group">
+                            <label for="avatar"></label>
+                            <div class="avatar-wrapper">
+                                {% if user.image %}
+                                  <img id="avatar-preview" src="{{ user.image.url }}" alt="Аватар" class="avatar">
+                                {% else %}
+                                <img id="avatar-preview" src="" alt="Аватар" class="avatar">
+                                {% endif %}
+                                <input type="file" id="id_image" name="image" accept="image/*" onchange="previewAvatar(event)">
+                                {% if form.image.errors %}
+                                    <div class="alert alert-danger alert">{{form.image.errors}}</div>
+                                    {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Поле для телефона -->
+                        <div class="form-group">
+                            <label for="id_phone"class="form-label">Телефон</label>
+                            <input type="text" id="id_phone" name="phone" placeholder="" value="{{form.phone.value}}" readonly>
+                            {% if form.phone.errors %}
+                            <div class="alert alert-danger alert">{{form.phone.errors}}</div>
+                            {% endif %}
+                        </div> 
+
+                        <!-- Поле для email -->
+                        <div class="form-group">
+                            <label for="id_email"class="form-label">Email</label>
+                            <input type="email" id="id_email" name="email" placeholder=""  value="{{form.email.value}}" required>
+                            {% if form.email.errors %}
+                            <div class="alert alert-danger alert">{{form.email.errors}}</div>
+                            {% endif %}
+                        </div>
+
+
+                        <!-- Поле для пароля -->
+                        <div class="form-group">
+                            <label for="id_password" class="form-label">Пароль</label>
+                            <input type="password" id="id_password" name="password" placeholder="Введите старый пароль"value="{{form.password.value}}"required>
+                            {% if form.password.errors %}
+                            <div class="alert alert-danger alert">{{form.password.errors}}</div>
+                            {% endif %}
+                        </div>
+                        <!-- Поле для ФИО -->
+                        <div class="form-group">
+                            <label for="id_last_name"class="form-label">Фамилия</label>
+                            <input type="text" id="id_last_name" name="last_name" value="{{form.last_name.value}}" placeholder="" required>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_username" class="form-label" Имя</label>
+                              
+                            <input type="text" id="id_username" name="username" placeholder=""value="{{form.username.value}}" required>
+                            {% if form.username.errors %}
+                            <div class="alert alert-danger alert">{{form.username.errors}}</div>
+                            {% endif %}
+                        </div>
+                
+                        
+                        <!-- Кнопка для отправки формы -->
+                        <button class="btn btn--md"><strong>Сохранить</strong></button>
+                    </form>
+                </div>          
+            </div>
+        </div>
+    </div>
+  </section>
+  {% endblock content %}
+
+{% block javascript %}
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script scr="script.js"></script>
+<script>
+  // Функция для переключения вкладок
+  function showTab(tabId) {
+      // Скрываем все вкладки
+      const tabs = document.querySelectorAll('.tab__content');
+      tabs.forEach(tab => {
+          tab.style.display = 'none';
+      });
+
+      // Убираем класс выделения у всех ссылок вкладок
+      const tabLinks = document.querySelectorAll('.account__tab');
+      tabLinks.forEach(link => {
+          link.classList.remove('active-tab');
+      });
+
+      // Отображаем только активную вкладку
+      const activeTab = document.getElementById(tabId);
+      if (activeTab) {
+          activeTab.style.display = 'block';
+      }
+
+      // Добавляем класс выделения к активной вкладке
+      const activeLink = document.querySelector(`.account__tab[href="#${tabId}"]`);
+      if (activeLink) {
+          activeLink.classList.add('active-tab');
+      }
+  }
+
+  // Устанавливаем начальную вкладку при загрузке страницы
+  document.addEventListener('DOMContentLoaded', () => {
+      // По умолчанию показываем вкладку "Мои данные"
+      showTab('update-profile');
+
+      // Добавляем обработчики событий для переключения вкладок
+      const tabLinks = document.querySelectorAll('.account__tab');
+      tabLinks.forEach(link => {
+          link.addEventListener('click', (event) => {
+              event.preventDefault(); // Предотвращаем стандартный переход
+              const tabId = link.getAttribute('href').substring(1); // Получаем ID вкладки
+              showTab(tabId); // Показываем соответствующую вкладку
+          });
+      });
+  });
+</script>
+{% endblock javascript %}
