@@ -1,6 +1,8 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
 {% load static %}
+{% load carts_tags %}
+{% user_carts request as carts %}
 
 {% block css %}
    <link rel="stylesheet" href="{% static "deps\style.css" %}">
@@ -8,7 +10,7 @@
 
 {% block navigator %}
 <section id="header">
-  <a href="#"><img src="images/logo.png" class="logo" alt=""></a>
+  <a href="#"><img src="{% static "deps/images/logo.png" %}" class="logo" alt=""></a>
   <div> 
     <ul id="navbarNavAltMarkup">
         <li>
@@ -23,8 +25,8 @@
       <li>
         <a href="contacts.html">КОНТАКТЫ</a>
       </li>
-        <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
-        <a class="pad-1" href="profile.html"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
+        <a class="pad-1" href="{% url "carts:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+        <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
     </ul>
   </div>
 </section>
@@ -41,6 +43,7 @@
         <div class="cart-data">
             <div id="cartItems"></div>
         </div>
+        {{carts}}
         <div class="cart-t">
           <table width="100">
             <thead>
@@ -54,29 +57,17 @@
               </tr>
             </thead>
             <tbody>
+              {% user_carts request as carts %}
+            {% for cart in carts  %} 
               <tr>
-                <td><a href="{% url "cart:cart_remove" %}"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
-                <td><img src="{% static "deps/images/p1.png" %}" alt=""></td>
-                <td>Носки женские с принтами</td>
+                <td><a href="{% url "carts:cart_remove" cart.id %}"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                <td><img src="{{cart.product.image.url}}" alt=""></td>
+                <td>{{cart.product.name}}</td>
                 <td>37-42</td>
-                <td><input type="number" value="1"></td>
-                <td>559 р.</td>
+                <td><input type="number" value="{{cart.quantity}}"></td>
+                 <td>{{ cart.product.price}}р.</td>
               </tr>
-              <tr>
-                <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
-                <td><img src="{% static "deps/images/p2.png" %}" alt=""></td>
-                <td>Детские брюки палаццо</td>
-                <td>34</td>
-                <td><input type="number" value="1"></td>
-                <td>598 р.</td>
-              </tr><tr>
-                <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
-                <td><img src="{% static "deps/images/p3.png" %}" alt=""></td>
-                <td>Хигиуруми для малышей панда</td>
-                <td>60-70</td>
-                <td><input type="number" value="1"></td>
-                <td>1233 р.</td>
-              </tr>
+            {% endfor %}
             </tbody>
           </table>
         </div>
@@ -87,7 +78,7 @@
     <table>
       <tr>
         <td>Цена</td>
-        <td>2390 p.</td>
+        <td>{{ carts.total_price }}p.</td>
       </tr>
       <tr>
         <td>Доставка</td>
@@ -95,10 +86,11 @@
       </tr>
       <tr>
         <td><strong>Итого</strong></td>
-        <td><strong>2390 р.</strong></td>
+        <td><strong>{{ carts.total_price }}</strong></td>
       </tr>
     </table>
     <a href="{% url "goods:checkout" %}"><button class="normal"><strong>Оформить заказ</strong></button></a> 
   </div>
 
-</section>{% endblock content %}
+</section>
+{% endblock content %}

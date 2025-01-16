@@ -77,7 +77,7 @@ def cart(request) -> HttpResponse:
         'title': 'Home - Корзина',
         'content':"Корзина"
     }
-    return  render(request, 'goods/cart.html', context)   
+    return  render(request, 'carts/cart.html', context)   
 
 def checkout(request) -> HttpResponse:
     context: dict[str, str] = {

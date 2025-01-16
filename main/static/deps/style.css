@@ -123,13 +123,7 @@
     color: #000000;
 }
 
-.form-section {
-    display: none;
-}
 
-.form-section.active {
-    display: block;
-}
 
 /* Обновленный стиль для input */
 input {
@@ -429,6 +423,7 @@ input:focus {
     margin: 0 auto; /* Центрируем изображение */
     display: block; /* Избавляемся от нежелательных отступов вокруг */
     padding: 25px; /* Убираем padding */
+    border:1px solid #ccc;
 }
 .pro h1{
     font-size: 25px;

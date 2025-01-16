@@ -4,7 +4,8 @@ from users.models import User
 
 class CartQueryset(models.QuerySet):
     def total_price(self):
-        return sum([cart.product_price() for cart in self])
+        
+        return sum(cart.products_price() for cart in self)
     
     def total_quentity(self):
         if self:
@@ -26,7 +27,7 @@ class Cart(models.Model):
     objects=CartQueryset().as_manager()
 
     def products_price(self):
-        return round(self.product.sell_price() * self.quantity,2)
+        return round(self.product.price * self.quantity,2)
 
     def __str__(self):
         return f'Корзина {self.user.username}| Товар {self.product.name} | Количество {self.quantity}'

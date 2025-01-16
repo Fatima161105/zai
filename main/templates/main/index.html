@@ -35,7 +35,7 @@
               <a class="pad-1" href="{% url "users:login" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
               <a class="pad-2" href="{% url "users:login" %}"><img src="{% static "deps\images\photo_2025-01-11_23-00-19.jpg" %}" width="50px" height="50px"></a>
             {% else %}
-              <a class="pad-1" href="{% url "goods:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
+              <a class="pad-1" href="{% url "carts:cart" %}"><img src="{% static "deps/images/photopicnic-basket_4487208 1.png" %}" id="cart-icon" data-quantity="0" width="50px" height="50px"></a>
              <a class="pad-1" href="{% url "users:profile" %}"><img src="{% static "deps/images/prof.jpg" %}" width="50px" height="50px"></a>
              <a class="pad-2" href="{% url "users:logout" %}"><img src="{% static "deps\images\Frame 46@2x.png" %}" width="50px" height="50px"></a>
             {% endif %}
